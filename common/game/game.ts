@@ -1,10 +1,10 @@
-import { ScoreBoard } from './scoreBoard.ts';
+import { ScoreBoard } from './scoreBoard';
 
 export interface Game {
-    id: int;
+    id: Number;
     name: string;
-    soloScore: ScoreBoard;
-    1v1Score: ScoreBoard;
+    scoreSolo: ScoreBoard;
+    score1v1: ScoreBoard;
     imagePath: string;
     singleView: boolean;
 }
