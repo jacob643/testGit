@@ -8,7 +8,7 @@ export class GameService {
 
     constructor() { }
 
-    generateExample() {
+    generateExample():Game {
         Game gameExample = {
             id = 0,
             name = "gameTest",
@@ -27,5 +27,7 @@ export class GameService {
             imagePath = "../assets/gameImage/gameTest",
             singleView = true
         }
+
+        return gameExample;
     }
 }
