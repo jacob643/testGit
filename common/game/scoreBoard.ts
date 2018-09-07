@@ -1,7 +1,7 @@
-import { Score } from './score.ts';
+import { Score } from './score';
 
 export interface ScoreBoard {
-    id: int;
+    id: Number;
     first: Score;
     second: Score;
     third: Score;
