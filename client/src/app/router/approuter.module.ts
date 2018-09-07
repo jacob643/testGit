@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { InitialViewComponent } from '../inital-view/initial-view.component'
 
 export const routes: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
-    { path: '', component: InitialViewComponent }
+    { path: '', redirectTo: 'initial', pathMatch: 'full' },
+    { path: 'initial', component: InitialViewComponent }
 ];
 
 @NgModule({

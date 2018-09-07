@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../../../../common/user/user';
+
 
 @Component({
     selector: 'app-inital-view',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InitialViewComponent implements OnInit {
 
+    @Input() user: User;
+
     constructor() { }
 
     ngOnInit() {
+        this.user = { name: "" };
     }
 
 }
