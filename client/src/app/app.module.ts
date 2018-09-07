@@ -11,7 +11,7 @@ import { AppRouterModule } from "./router/approuter.module";
 @NgModule({
     declarations: [
         AppComponent,
-        GameDisplayComponent
+        GameDisplayComponent,
         InitialViewComponent
     ],
     imports: [
