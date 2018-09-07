@@ -1,5 +1,5 @@
 export interface Score {
-    id: int;
+    id: Number;
     name: string;
     time: string;
 }
