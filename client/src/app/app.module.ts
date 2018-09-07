@@ -4,10 +4,12 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { BasicService } from "./basic.service";
 import { HttpClientModule } from "@angular/common/http";
+import { InitalViewComponent } from './inital-view/inital-view.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        InitalViewComponent
     ],
     imports: [
         BrowserModule,
