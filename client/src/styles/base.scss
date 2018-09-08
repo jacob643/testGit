@@ -1,46 +1,55 @@
+@import "./variable.scss";
+
 html{
-    width:100%;
-    height:100%;
-    min-height: 100%;
+    width: $full;
+    height: $full;
+    min-height: $full;
 }
 
-body {
-    margin: 0px;
-    height: 100%;
+body, app-root {
+    margin: $none;
+    height: $full;
+    width: $full;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
     align-items: center;
-    font-size: 14px;
+    font-size: $font-size;
     font-family: "Arial", Helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
-    margin: 0px;
+    margin: $none;
     font-weight: bold;
 }
 
 h1 {
-    font-size: 42px;
+    font-size: $big-font-size;
 }
 
 h2 {
-    font-size: 38px;
+    font-size: calc($font-size * 0.9);
 }
 
 h3 {
-    font-size: 34px;
+    font-size: calc($font-size * 0.8);
 }
 
 h4 {
-    font-size: 30px;
+    font-size: calc($font-size * 0.7);
 }
 
 h5 {
-    font-size: 26px;
+    font-size: calc($font-size * 0.6);
 }
 
 h6 {
-    font-size: 22px;
+    font-size: calc($font-size * 0.5);
+}
+
+header {
+    height: $header-size;
+    background: $primary-color;
+    width: $full;
 }
