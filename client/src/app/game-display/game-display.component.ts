@@ -9,9 +9,16 @@ import { GameService } from '../game.service';
 })
 export class GameDisplayComponent implements OnInit {
 
+  gameExample: Game;
+
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
+    this.getGameExample();
+  }
+
+  getGameExample(): void {
+    this.gameExample = this.gameService.generateExample();
   }
 
 }
