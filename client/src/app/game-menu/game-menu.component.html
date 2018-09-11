@@ -1,4 +1,5 @@
-<p>
-  game-menu works!
-</p>
-<app-game-display [game]="gameExample"></app-game-display>
+<div *ngFor="let game of gameExamples">
+    <br>
+      <app-game-display [game]="game"></app-game-display>
+
+</div>
