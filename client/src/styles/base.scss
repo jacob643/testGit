@@ -1,0 +1,59 @@
+html{
+    width: $full;
+    height: $full;
+    min-height: $full;
+}
+
+body, app-root {
+    margin: $none;
+    height: $full;
+    width: $full;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: $font-size;
+    font-family: "Arial", Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    margin: $none;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: $big-font-size;
+}
+
+h2 {
+    font-size: calc(#{$big-font-size} * 0.9);
+}
+
+h3 {
+    font-size: calc(#{$big-font-size} * 0.8);
+}
+
+h4 {
+    font-size: calc(#{$big-font-size} * 0.7);
+}
+
+h5 {
+    font-size: calc(#{$big-font-size} * 0.6);
+}
+
+h6 {
+    font-size: calc(#{$big-font-size} * 0.5);
+}
+
+header {
+    height: $header-size;
+    background: $primary-color;
+    width: $full;
+}
+
+footer {
+    height: $footer-size;
+    background: $primary-color;
+    width: $full;
+}

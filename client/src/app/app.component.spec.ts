@@ -7,6 +7,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRouterModule } from "./router/approuter.module";
 import { InitialViewComponent } from "./inital-view/initial-view.component"
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule } from "@angular/forms"
+
 describe("AppComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -14,7 +16,7 @@ describe("AppComponent", () => {
                 AppComponent,
                 InitialViewComponent
             ],
-            imports: [HttpClientModule, AppRouterModule],
+            imports: [HttpClientModule, AppRouterModule, FormsModule],
             providers: [BasicService, { provide: APP_BASE_HREF, useValue: '/' }]
         }).compileComponents();
     }));
