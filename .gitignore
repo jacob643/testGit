@@ -3,3 +3,5 @@
 /.vs/
 
 package-lock.json
+
+*.pid #ignoring pid kill process of the makefile
