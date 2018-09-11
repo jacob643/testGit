@@ -3,10 +3,10 @@ import { User } from "../../../common/user/user";
 import "reflect-metadata";
 import { injectable, } from "inversify";
 
-export module Route {
+export module UserController {
 
     @injectable()
-    export class UserController {
+    export class Users {
         users: User[];
 
         public get(req: Request, res: Response, next: NextFunction): void {
