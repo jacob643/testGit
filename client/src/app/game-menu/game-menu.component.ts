@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from './../../../../common/game/game';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-game-menu',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameMenuComponent implements OnInit {
 
-  constructor() { }
+    gameExample: Game;
 
-  ngOnInit() {
-  }
+    constructor(private gameService: GameService) { }
+
+    ngOnInit() {
+      this.getGameExample();
+    }
+
+    getGameExample(): void {
+      this.gameExample = this.gameService.generateExample();
+    }
 
 }
