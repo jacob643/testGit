@@ -8,12 +8,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { GameDisplayComponent } from './game-display/game-display.component';
 import { InitialViewComponent } from './inital-view/initial-view.component';
 import { AppRouterModule } from "./router/approuter.module";
+import { GameMenuComponent } from './game-menu/game-menu.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         GameDisplayComponent,
-        InitialViewComponent
+        InitialViewComponent,
+        GameMenuComponent
     ],
     imports: [
         BrowserModule,
