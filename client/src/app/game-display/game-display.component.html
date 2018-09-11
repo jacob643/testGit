@@ -4,24 +4,24 @@
   </p>
   Image:
   <img src="../../{{ gameExample.imagePath }}/original.jpg" width="100" height="100">
-<div class="column">
-<br>
-  Solo:
-  <br>
-  1 - {{gameExample.scoreSolo.first.name}} : {{gameExample.scoreSolo.first.time}}
-<br>
-  2 - {{gameExample.scoreSolo.second.name}} : {{gameExample.scoreSolo.second.time}}
-<br>
-  3 - {{gameExample.scoreSolo.third.name}} : {{gameExample.scoreSolo.third.time}}
-</div>
-<div class="column">
-  <br>
-    1v1:
-    <br>
-    1 - {{gameExample.score1v1.first.name}} : {{gameExample.score1v1.first.time}}
-  <br>
-    2 - {{gameExample.score1v1.second.name}} : {{gameExample.score1v1.second.time}}
-  <br>
-    3 - {{gameExample.score1v1.third.name}} : {{gameExample.score1v1.third.time}}
-</div>
+  Top 3
+  <table>
+    <tr>
+      <th>Solo</th>
+      <th>1v1</th>
+    </tr>
+    <tr>
+      <td>{{gameExample.scoreSolo.first.name}} : {{gameExample.scoreSolo.first.time}}</td>
+      <td>{{gameExample.score1v1.first.name}} : {{gameExample.score1v1.first.time}}</td>
+    </tr>
+    <tr>
+      <td>{{gameExample.scoreSolo.second.name}} : {{gameExample.scoreSolo.second.time}}</td>
+      <td>{{gameExample.score1v1.second.name}} : {{gameExample.score1v1.second.time}}</td>
+    </tr>
+    <tr>
+      <td>{{gameExample.scoreSolo.third.name}} : {{gameExample.scoreSolo.third.time}}</td>
+      <td>{{gameExample.score1v1.third.name}} : {{gameExample.score1v1.third.time}}</td>
+    </tr>
+  </table>
+
 </div>
