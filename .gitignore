@@ -4,4 +4,5 @@
 
 package-lock.json
 
-*.pid #ignoring pid kill process of the makefile
+#ignoring pid kill process of the makefile
+*.pid
