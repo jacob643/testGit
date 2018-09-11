@@ -29,4 +29,12 @@ describe('InitialViewComponent', () => {
     it('should have a user', () => {
         expect(component.user).toBeTruthy();
     })
+
+    it('should be alphanumeric', () => {
+        expect(component.user.regexpression.test("TestUser99+")).toBeFalsy();
+    })
+
+    it('should contain 4-10 characters', () => {
+        expect(component.user.regexpression.test("TestUser9999")).toBeFalsy();
+    })
 });

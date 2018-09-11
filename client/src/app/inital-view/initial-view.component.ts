@@ -14,7 +14,7 @@ export class InitialViewComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.user = { name: "" };
+        this.user = { name: "", regexpression: RegExp('^[a-zA-Z0-9]{4,10}$') };
     }
 
 }

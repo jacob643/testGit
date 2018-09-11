@@ -1,3 +1,6 @@
-<h1>Blah</h1>
-<input [(ngModel)]="user.name" placeholder="your name here">
-<h1>{{user.name}}</h1>
+<h1>Please enter your nickname</h1>
+<div>Alphanumeric only, 4-10 characters.</div>
+<h4>
+  <input [(ngModel)]="user.name" placeholder="Your nickname here">
+</h4>
+<h3 *ngIf="user.regexpression.test(user.name)">{{user.name}}</h3>
