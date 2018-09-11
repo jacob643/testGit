@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Game } from './../../../../common/game/game';
-import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-game-display',
@@ -9,16 +8,10 @@ import { GameService } from '../game.service';
 })
 export class GameDisplayComponent implements OnInit {
 
-  gameExample: Game;
+  @Input() game :Game;
 
-  constructor(private gameService: GameService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.getGameExample();
-  }
-
-  getGameExample(): void {
-    this.gameExample = this.gameService.generateExample();
-  }
+  ngOnInit() { }
 
 }
