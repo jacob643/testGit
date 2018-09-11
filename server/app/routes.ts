@@ -19,6 +19,9 @@ export class Routes {
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.get(req, res, next));
 
+        router.post("/users",
+            (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));
+
         return router;
     }
 }
