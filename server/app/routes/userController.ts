@@ -5,7 +5,7 @@ import { injectable, } from "inversify";
 
 export module UserController {
 
-    const REGEXP_USERNAME = /^.{4,10}$/
+    const REGEXP_USERNAME = /^[a-zA-Z0-9]{4,10}$/
 
     @injectable()
     export class Users {
