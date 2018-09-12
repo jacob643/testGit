@@ -5,6 +5,8 @@ import { injectable, } from "inversify";
 
 export module UserController {
 
+    const REGEXP_USERNAME = /^.{4,10}$/
+
     @injectable()
     export class Users {
         public users = new Array<User>();
@@ -16,7 +18,9 @@ export module UserController {
 
         public post(req: Request, res: Response, next: NextFunction): void {
             let user = req.body.user
-            this.users.push(user);
+            if (REGEXP_USERNAME.test(user.name)) {
+                this.users.push(user);
+            }
             res.send(JSON.stringify(user));
         }
     }
