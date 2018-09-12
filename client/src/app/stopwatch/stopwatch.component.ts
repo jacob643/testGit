@@ -20,6 +20,18 @@ export class StopwatchComponent implements OnInit {
     output: string;
 
 
+    refreshTime() {
+
+        // Get actual Time
+        this.now = new Date().getTime();
+
+        // Find the difference between now and the start time
+        this.elapsedTime = this.now - this.startTime;
+
+        this.updateview();
+    }
+
+
     updateview() {
 
 
