@@ -28,7 +28,7 @@ describe("Testing UserController methods", () => {
 
     describe("initialization", () => {
         it("Should initialize an empty user array", () => {
-            assert.deepEqual(controller.users, [], "should be empty");
+            expect(controller.users).to.be.an('array').that.is.empty;
         });
     });
 
