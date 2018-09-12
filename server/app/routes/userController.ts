@@ -15,8 +15,9 @@ export module UserController {
         }
 
         public post(req: Request, res: Response, next: NextFunction): void {
-            this.users.push(req.body.user);
-            res.send(JSON.stringify(this.users));
+            let user = req.body.user
+            this.users.push(user);
+            res.send(JSON.stringify(user));
         }
     }
 }
