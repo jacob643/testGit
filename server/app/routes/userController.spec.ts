@@ -67,5 +67,12 @@ describe("Testing UserController methods", () => {
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
         });
+
+        it("should not add name longer than 10 chars", () => {
+            user = { name: "12345678901", regexpression: /a/ }
+            req = mockReq({ body: { user: user } })
+            controller.post(req, res, next)
+            expect(controller.users).to.be.an('array').that.is.empty;
+        })
     });
 });
