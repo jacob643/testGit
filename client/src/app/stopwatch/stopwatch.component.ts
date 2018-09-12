@@ -20,6 +20,13 @@ export class StopwatchComponent implements OnInit {
     output: string;
 
 
+    padding(amount: number) {
+        let str = amount + '';
+        if (str.length < CHAR_IN_DISPLAY) str = '0' + str;
+        return str;
+    }
+
+
     constructor() {
     }
 
