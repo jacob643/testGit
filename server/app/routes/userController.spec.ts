@@ -43,18 +43,29 @@ describe("Testing UserController methods", () => {
     });
 
     describe("postUsers", () => {
+        let req = mockReq();
+        let res = mockRes();
+
+        beforeEach(() => {
+            req = mockReq({ body: { user: user } });
+            res = mockRes();
+        })
+
         it("should add a user to users property", () => {
-            let req = mockReq({ body: { user: user } });
-            let res = mockRes();
             controller.post(req, res, next);
             expect(controller.users).to.contain(user);
         });
 
         it("should send the user data back", () => {
-            let req = mockReq({ body: { user: user } });
-            let res = mockRes();
             controller.post(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         })
+
+        it("should not add name shorter than 4 chars", () => {
+            user = { name: "bbb", regexpression: /a/ }
+            req = mockReq({ body: { user: user } })
+            controller.post(req, res, next)
+            expect(controller.users).to.be.an('array').that.is.empty;
+        });
     });
 });
