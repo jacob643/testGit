@@ -35,10 +35,26 @@ describe("Testing UserController methods", () => {
     describe("getUsers", () => {
         it("send an user list", () => {
             controller.users.push(user)
-            let req = mockReq({ body: { name: 'blah' } });
+            let req = mockReq({ body: {} });
             let res = mockRes();
             controller.get(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(controller.users));
+        });
+    });
+
+    describe("postUsers", () => {
+        it("should add a user to users property", () => {
+            let req = mockReq({ body: { user: user } });
+            let res = mockRes();
+            controller.post(req, res, next);
+            expect(controller.users).to.contain(user);
+        });
+
+        it("should send the user data back", () => {
+            let req = mockReq({ body: { user: user } });
+            let res = mockRes();
+            controller.post(req, res, next);
+            expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         })
-    })
+    });
 });
