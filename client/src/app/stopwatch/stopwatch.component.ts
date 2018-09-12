@@ -24,6 +24,9 @@ export class StopwatchComponent implements OnInit {
     }
 
     ngOnInit() {
+        //valeur initial du output a 00:00
+        this.output = "00:00"
+        this.startTime = 0;
     }
 
 }
