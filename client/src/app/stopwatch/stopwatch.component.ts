@@ -47,6 +47,22 @@ export class StopwatchComponent implements OnInit {
     }
 
 
+    stop() {
+
+        if (this.startTime == 0)
+            return 0;
+
+        this.finalTime = new Date().getTime();
+        clearInterval(this.loop);
+        this.elapsedTime = this.finalTime - this.startTime;
+
+        //preventing from calling stop() twice
+        this.startTime = 0;
+
+        return this.elapsedTime;
+    }
+
+
     updateview() {
 
 
