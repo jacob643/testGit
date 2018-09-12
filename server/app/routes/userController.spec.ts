@@ -1,5 +1,5 @@
 import { NextFunction } from "express";
-import { assert, expect } from "chai";
+import { expect } from "chai";
 import { mockReq, mockRes } from 'sinon-express-mock'
 import "reflect-metadata";
 let chai = require("chai");
@@ -12,7 +12,7 @@ import { User } from "../../../common/user/user"
 chai.should();
 chai.use(sinonChai);
 
-describe("Testing UserController methods", () => {
+describe("UserController", () => {
     let controller: UserController.Users;
     let next: NextFunction
     let user: User;
@@ -27,13 +27,13 @@ describe("Testing UserController methods", () => {
     })
 
     describe("initialization", () => {
-        it("Should initialize an empty user array", () => {
+        it("should initialize an empty User array", () => {
             expect(controller.users).to.be.an('array').that.is.empty;
         });
     });
 
     describe("getUsers", () => {
-        it("send an user list", () => {
+        it("should send an user list", () => {
             controller.users.push(user)
             let req = mockReq({ body: {} });
             let res = mockRes();
