@@ -19,7 +19,7 @@ describe("Testing UserController methods", () => {
 
     beforeEach(() => {
         controller = new UserController.Users();
-        user = { name: "blah", regexpression: /a/ };
+        user = { name: "Blah123", regexpression: /a/ };
     })
 
     afterEach(() => {
@@ -70,6 +70,13 @@ describe("Testing UserController methods", () => {
 
         it("should not add name longer than 10 chars", () => {
             user = { name: "12345678901", regexpression: /a/ }
+            req = mockReq({ body: { user: user } })
+            controller.post(req, res, next)
+            expect(controller.users).to.be.an('array').that.is.empty;
+        })
+
+        it("should be impossible to not add alphanumerics chars", () => {
+            user = { name: "blah+", regexpression: /a/ }
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
