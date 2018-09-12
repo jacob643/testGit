@@ -21,6 +21,7 @@ export module UserController {
             if (REGEXP_USERNAME.test(user.name)) {
                 this.users.push(user);
             }
+            res.status(500);
             res.send(JSON.stringify(user));
         }
     }

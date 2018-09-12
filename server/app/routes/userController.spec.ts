@@ -77,7 +77,7 @@ describe("Testing UserController methods", () => {
             expect(res.status).to.be.calledWith(500);
         })
 
-        it("should be impossible to not add alphanumerics chars", () => {
+        it("should be impossible to have a name that isn't alphanumeric", () => {
             user = { name: "blah+", regexpression: /a/ }
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
