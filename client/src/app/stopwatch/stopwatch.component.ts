@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StopwatchComponent implements OnInit {
 
-    constructor() { }
+    startTime: number;
+    finalTime: number;
+    now: number;
+    elapsedTime: number;
+    loop: any;
+    output: string;
+
+
+    constructor() {
+    }
 
     ngOnInit() {
     }
