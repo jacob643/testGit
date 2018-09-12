@@ -8,7 +8,9 @@ import { UserController } from "./routes/userController";
 @injectable()
 export class Routes {
 
-    public constructor(@inject(Types.Index) private index: Route.Index, @inject(Types.Users) private users: UserController.Users) { }
+    public constructor(
+        @inject(Types.Index) private index: Route.Index,
+        @inject(Types.Users) private users: UserController.Users) { }
 
     public get routes(): Router {
         const router: Router = Router();
