@@ -19,6 +19,21 @@ export class StopwatchComponent implements OnInit {
     loop: any;
     output: string;
 
+    start() {
+        //set start time
+        this.startTime = new Date().getTime();
+        this.elapsedTime = 0;
+        //preventing multiple start of the stopwatch
+        clearInterval(this.loop);
+
+        this.output = "00:00";
+
+        // Update the stopwatch every 1 second
+        this.loop = setInterval(() => this.refreshTime(), 1 * MILI_IN_SEC);
+
+
+    }
+
 
     refreshTime() {
 
