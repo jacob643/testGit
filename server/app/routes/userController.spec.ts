@@ -66,6 +66,7 @@ describe("Testing UserController methods", () => {
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
+            expect(res.status).to.be.calledWith(500);
         });
 
         it("should not add name longer than 10 chars", () => {
@@ -73,6 +74,7 @@ describe("Testing UserController methods", () => {
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
+            expect(res.status).to.be.calledWith(500);
         })
 
         it("should be impossible to not add alphanumerics chars", () => {
@@ -80,6 +82,7 @@ describe("Testing UserController methods", () => {
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
+            expect(res.status).to.be.calledWith(500);
         })
     });
 });
