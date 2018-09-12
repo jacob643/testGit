@@ -19,7 +19,7 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.index.helloWorld(req, res, next));
 
         router.get("/users",
-            (req: Request, res: Response, next: NextFunction) => this.users.get(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
 
         router.post("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));

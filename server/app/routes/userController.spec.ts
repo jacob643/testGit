@@ -37,7 +37,7 @@ describe("Testing UserController methods", () => {
             controller.users.push(user)
             let req = mockReq({ body: {} });
             let res = mockRes();
-            controller.get(req, res, next);
+            controller.getUsers(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(controller.users));
         });
     });

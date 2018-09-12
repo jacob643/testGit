@@ -10,7 +10,7 @@ export module UserController {
         public users = new Array<User>();
         public newUser: User;
 
-        public get(req: Request, res: Response, next: NextFunction): void {
+        public getUsers(req: Request, res: Response, next: NextFunction): void {
             res.send(JSON.stringify(this.users));
         }
 
