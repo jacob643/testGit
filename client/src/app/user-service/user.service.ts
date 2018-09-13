@@ -20,6 +20,10 @@ export class UserService {
         );
     }
 
+    public postUser(user: User): Observable<User> {
+        return of(user as User)
+    }
+
     public handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
         return (error: Error): Observable<T> => {
             return of(result as T);

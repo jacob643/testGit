@@ -29,4 +29,20 @@ describe('UserService', () => {
             expect(httpClientSpy.get.calls.count()).toBe(1, "one call");
         })
     })
+
+    describe("PostUser", () => {
+        it("should post a user to the http only once", () => {
+            httpClientSpy = jasmine.createSpyObj("HttpClient", ["post"]);
+            httpClientSpy.post.and.returnValue(TestHelper.asyncData(user));
+
+            userService.postUser(user).subscribe(
+                (res: User) => {
+                    expect(res).toEqual(user);
+                },
+                fail
+            )
+            expect(httpClientSpy.post.calls.argsFor(1)).toBe(user, "body of the request is the user");
+            expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
+        });
+    });
 });
