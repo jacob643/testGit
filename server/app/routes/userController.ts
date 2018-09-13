@@ -24,5 +24,10 @@ export module UserController {
             res.status(500);
             res.send(JSON.stringify(user));
         }
+
+        public getUser(req: Request, res: Response, next: NextFunction): void {
+            let name: string = req.param.name;
+            res.send(JSON.stringify(this.users.find((e) => { return e.name == name })));
+        }
     }
 }

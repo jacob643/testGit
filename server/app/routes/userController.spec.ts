@@ -16,6 +16,8 @@ describe("UserController", () => {
     let controller: UserController.Users;
     let next: NextFunction
     let user: User;
+    let req = mockReq();
+    let res = mockRes();
 
     beforeEach(() => {
         controller = new UserController.Users();
@@ -35,17 +37,12 @@ describe("UserController", () => {
     describe("getUsers", () => {
         it("should send an user list", () => {
             controller.users.push(user)
-            let req = mockReq({ body: {} });
-            let res = mockRes();
             controller.getUsers(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(controller.users));
         });
     });
 
     describe("postUsers", () => {
-        let req = mockReq();
-        let res = mockRes();
-
         beforeEach(() => {
             req = mockReq({ body: { user: user } });
             res = mockRes();
@@ -84,5 +81,18 @@ describe("UserController", () => {
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })
+
+        describe("getUser", () => {
+            beforeEach(() => {
+                req = mockReq({ param: { name: user.name } });
+                res = mockRes();
+            })
+
+            it("should send a single user through server", () => {
+                controller.users.push(user);
+                controller.getUser(req, res, next);
+                expect(res.send).to.be.calledWith(JSON.stringify(user));
+            });
+        });
     });
 });
