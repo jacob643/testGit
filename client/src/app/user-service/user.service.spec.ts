@@ -44,4 +44,19 @@ describe('UserService', () => {
             expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
         });
     });
+
+    describe("GetUser", () => {
+        it("should get a single user from http", () => {
+            let url = "http://localhost:3000/users/" + user.name;
+            httpClientSpy.get.and.returnValue(TestHelper.asyncData(user));
+            userService.getUser(user.name).subscribe(
+                (res: User) => {
+                    expect(res).toEqual(user);
+                },
+                fail
+            )
+            expect(httpClientSpy.get.calls.count()).toBe(1, "one call");
+            expect(httpClientSpy.get.calls.argsFor(0)).toContain(url, "ask the right url");
+        });
+    });
 });

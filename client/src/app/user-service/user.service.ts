@@ -26,6 +26,12 @@ export class UserService {
         );
     }
 
+    public getUser(name: string): Observable<User> {
+        return this.http.get<User>(this.BASE_URL + '/' + name).pipe(
+            catchError(this.handleError<User>("GetUser"))
+        );
+    }
+
     public handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
         return (error: Error): Observable<T> => {
             return of(result as T);
