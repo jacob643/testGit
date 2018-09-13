@@ -21,7 +21,9 @@ export class UserService {
     }
 
     public postUser(user: User): Observable<User> {
-        return of(user as User)
+        return this.http.post<User>(this.BASE_URL, user).pipe(
+            catchError(this.handleError<User>("PostUser"))
+        );
     }
 
     public handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {

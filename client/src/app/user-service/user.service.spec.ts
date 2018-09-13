@@ -10,7 +10,7 @@ describe('UserService', () => {
     let user: User;
 
     beforeEach(() => {
-        httpClientSpy = jasmine.createSpyObj("HttpClient", ["get"]);
+        httpClientSpy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
         userService = new UserService(httpClientSpy);
         user = { name: "Blah123", regexpression: /a/ };
     });
@@ -32,7 +32,6 @@ describe('UserService', () => {
 
     describe("PostUser", () => {
         it("should post a user to the http only once", () => {
-            httpClientSpy = jasmine.createSpyObj("HttpClient", ["post"]);
             httpClientSpy.post.and.returnValue(TestHelper.asyncData(user));
 
             userService.postUser(user).subscribe(
@@ -41,7 +40,7 @@ describe('UserService', () => {
                 },
                 fail
             )
-            expect(httpClientSpy.post.calls.argsFor(1)).toBe(user, "body of the request is the user");
+            expect(httpClientSpy.post.calls.argsFor(0)).toContain(user, "body of the request is the user");
             expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
         });
     });
