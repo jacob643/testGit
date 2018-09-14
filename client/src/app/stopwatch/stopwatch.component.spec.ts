@@ -44,4 +44,18 @@ describe('StopwatchComponent', () => {
                 && component.elapsedTime < waitTime + precision);
         });
 
+        it('should show 00:01 after a sec', () => {
+            component.start();
+            let waitTime = 1010;
+            let startTime = new Date().getTime();
+            let now = new Date().getTime();
+            while(now < startTime + waitTime)
+            {
+                now = new Date().getTime();
+            }
+            component.stop();
+            assert(component.output == "00:01");
+        });
+
+
 });
