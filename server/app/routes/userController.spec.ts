@@ -44,7 +44,7 @@ describe("UserController", () => {
 
     describe("postUsers", () => {
         beforeEach(() => {
-            req = mockReq({ body: user.name });
+            req = mockReq({ body: {name: user.name} });
             res = mockRes();
         })
 
@@ -60,7 +60,7 @@ describe("UserController", () => {
 
         it("should not add name shorter than 4 chars", () => {
             user = createUser("bbb");
-            req = mockReq({ body: user.name });
+            req = mockReq({ body: {name: user.name} });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
@@ -68,7 +68,7 @@ describe("UserController", () => {
 
         it("should not add name longer than 10 chars", () => {
             user = createUser("12345678901");
-            req = mockReq({ body: user.name });
+            req = mockReq({ body: {name: user.name} });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
@@ -76,23 +76,30 @@ describe("UserController", () => {
 
         it("should be impossible to have a name that isn't alphanumeric", () => {
             user = createUser("blah+");
-            req = mockReq({ body: { user: user } })
+            req = mockReq({ body: {name: user.name} })
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })
 
-        describe("getUser", () => {
-            beforeEach(() => {
-                req = mockReq({ param: { name: user.name } });
-                res = mockRes();
-            })
+        it("should be a unique name", () => {
+            controller.users.push(user);
+            expect(() => controller.post(req, res, next)).to.throw();
+            expect(res.status).to.be.calledWith(500);
+        })
 
-            it("should send a single user through server", () => {
-                controller.users.push(user);
-                controller.getUser(req, res, next);
-                expect(res.send).to.be.calledWith(JSON.stringify(user));
-            });
+    });
+
+    describe("getUser", () => {
+        beforeEach(() => {
+            req = mockReq({ param: {name: user.name} });
+            res = mockRes();
+        })
+
+        it("should send a single user through server", () => {
+            controller.users.push(user);
+            controller.getUser(req, res, next);
+            expect(res.send).to.be.calledWith(JSON.stringify(user));
         });
     });
 });
