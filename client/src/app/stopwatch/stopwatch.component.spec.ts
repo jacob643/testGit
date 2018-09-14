@@ -27,17 +27,21 @@ describe('StopwatchComponent', () => {
         assert(component.output == "00:00");
     });
 
+    function wait(waitTime:number)
+    {
+        let startTime = new Date().getTime();
+        let now = new Date().getTime();
+        while (now < startTime + waitTime) {
+            now = new Date().getTime();
+        }
+    }
 
     it('should be greater than 0 after started', () => {
 
         component.start();
         let waitTime = 100;
         let precision = 5;
-        let startTime = new Date().getTime();
-        let now = new Date().getTime();
-        while (now < startTime + waitTime) {
-            now = new Date().getTime();
-        }
+        wait(waitTime);
         component.stop();
         assert(waitTime - precision < component.elapsedTime
             && component.elapsedTime < waitTime + precision);
@@ -46,11 +50,7 @@ describe('StopwatchComponent', () => {
     it('should show 00:01 after a sec', () => {
         component.start();
         let waitTime = 1010;
-        let startTime = new Date().getTime();
-        let now = new Date().getTime();
-        while (now < startTime + waitTime) {
-            now = new Date().getTime();
-        }
+        wait(waitTime);
         component.stop();
         assert(component.output == "00:01");
     });
