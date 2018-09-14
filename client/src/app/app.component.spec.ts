@@ -4,14 +4,20 @@ import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
 import { BasicService } from "./basic.service";
 import { HttpClientModule } from "@angular/common/http";
+import { AppRouterModule } from "./router/approuter.module";
+import { InitialViewComponent } from "./inital-view/initial-view.component"
+import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule } from "@angular/forms"
+
 describe("AppComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                AppComponent
+                AppComponent,
+                InitialViewComponent
             ],
-            imports: [HttpClientModule],
-            providers: [BasicService]
+            imports: [HttpClientModule, AppRouterModule, FormsModule],
+            providers: [BasicService, { provide: APP_BASE_HREF, useValue: '/' }]
         }).compileComponents();
     }));
     it("should create the app", async(() => {

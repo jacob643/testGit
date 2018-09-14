@@ -1,0 +1,19 @@
+.center {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.input-centered {
+    text-align: center;
+}
+
+.warning-message {
+    color: $primary-color;
+    text-align: center;
+    font-weight: bold;
+}
+
+.button-centered {
+    text-align: center;
+}
