@@ -24,6 +24,10 @@ export class Routes {
         router.post("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));
 
+        router.get("/users/:name",
+            (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
+
+
         return router;
     }
 }
