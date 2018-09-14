@@ -59,6 +59,8 @@ export class StopwatchComponent implements OnInit {
         //preventing from calling stop() twice
         this.startTime = 0;
 
+        this.updateview();
+
         return this.elapsedTime;
     }
 
