@@ -2,8 +2,8 @@ export interface User {
     name: string;
 }
 
-export function User(name: string = "DefaultName") {
+export function createUser(name: string = "DefaultName") {
     return {
-        name: name;
+        name: name
     }
 }

@@ -7,7 +7,7 @@ let sinon = require("sinon");
 var sinonChai = require("sinon-chai");
 
 import { UserController } from "./userController"
-import { User } from "../../../common/user/user"
+import { User, createUser } from "../../../common/user/user"
 
 chai.should();
 chai.use(sinonChai);
@@ -21,7 +21,7 @@ describe("UserController", () => {
 
     beforeEach(() => {
         controller = new UserController.Users();
-        user = { name: "Blah123"};
+        user = createUser("Blah123");
     })
 
     afterEach(() => {
@@ -59,7 +59,7 @@ describe("UserController", () => {
         })
 
         it("should not add name shorter than 4 chars", () => {
-            user = { name: "bbb" };
+            user = createUser("bbb");
             req = mockReq({ body: user.name });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
@@ -67,7 +67,7 @@ describe("UserController", () => {
         });
 
         it("should not add name longer than 10 chars", () => {
-            user = { name: "12345678901" };
+            user = createUser("12345678901");
             req = mockReq({ body: user.name });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
@@ -75,7 +75,7 @@ describe("UserController", () => {
         })
 
         it("should be impossible to have a name that isn't alphanumeric", () => {
-            user = { name: "blah+" }
+            user = createUser("blah+");
             req = mockReq({ body: { user: user } })
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;

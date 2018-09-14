@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../../../common/user/user';
+import { User, createUser } from '../../../../common/user/user';
 import { UserService } from '../services/user-service/user.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class InitialViewComponent implements OnInit {
 
     @Input() name: string;
 
-    public user: User = {name: "" };
+    public user = createUser();
 
     constructor(private userService: UserService) { }
 

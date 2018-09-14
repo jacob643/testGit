@@ -25,7 +25,7 @@ describe("AppComponent", () => {
         const app: any = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
-    it(`should have as title 'client'`, async(() => {
+    it(`should have as title 'LOG2990'`, async(() => {
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
         const app: any = fixture.debugElement.componentInstance;
         expect(app.title).toEqual("LOG2990");
