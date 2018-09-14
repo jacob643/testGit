@@ -8,26 +8,20 @@ import { AppRouterModule } from "./router/approuter.module";
 import { InitialViewComponent } from "./inital-view/initial-view.component"
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from "@angular/forms"
-
+import { GameMenuComponent } from './game-menu/game-menu.component';
+import { GameDisplayComponent } from './game-display/game-display.component';
 describe("AppComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                InitialViewComponent
+                InitialViewComponent,
+                GameMenuComponent,
+                GameDisplayComponent
             ],
             imports: [HttpClientModule, AppRouterModule, FormsModule],
             providers: [BasicService, { provide: APP_BASE_HREF, useValue: '/' }]
         }).compileComponents();
     }));
-    it("should create the app", async(() => {
-        const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
-        const app: any = fixture.debugElement.componentInstance;
-        expect(app).toBeTruthy();
-    }));
-    it(`should have as title 'client'`, async(() => {
-        const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
-        const app: any = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual("LOG2990");
-    }));
+
 });
