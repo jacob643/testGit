@@ -1,20 +1,28 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../../common/user/user';
-
+import { UserService } from '../user-service/user.service';
 
 @Component({
     selector: 'app-inital-view',
     templateUrl: './initial-view.component.html',
-    styleUrls: ['./initial-view.component.scss']
+    styleUrls: ['./initial-view.component.scss'],
+    host: { 'class': 'center' }
 })
 export class InitialViewComponent implements OnInit {
 
-    @Input() user: User;
+    @Input() name: string;
 
-    constructor() { }
+    public user: User;
 
-    ngOnInit() {
-        this.user = { name: "" };
+    constructor(private userService: UserService) { }
+
+    postUser() {
+        this.userService.postUser(this.name).subscribe( (user: User) => {
+            this.user = user;
+        } );
     }
 
+    ngOnInit() {
+        this.name ="";
+    }
 }
