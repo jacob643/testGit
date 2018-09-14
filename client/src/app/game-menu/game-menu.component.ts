@@ -16,13 +16,9 @@ export class GameMenuComponent implements OnInit {
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
-      this.getGameExample();
       this.getGameExamples();
     }
 
-    getGameExample(): void {
-      this.gameExample = this.gameService.generateExample();
-    }
     getGameExamples(): void {
       this.gameExamples = this.gameService.generateExampleArray();
     }
