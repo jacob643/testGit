@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../../../common/user/user';
-
+import { UserService } from '../user-service/user.service';
 
 @Component({
     selector: 'app-inital-view',
@@ -10,12 +9,11 @@ import { User } from '../../../../common/user/user';
 })
 export class InitialViewComponent implements OnInit {
 
-    @Input() user: User;
+    @Input() name: string;
 
-    constructor() { }
+    constructor(private userService: UserService) { }
 
     ngOnInit() {
-        this.user = { name: "", regexpression: RegExp('^[a-zA-Z0-9]{4,10}$') };
+        this.name ="";
     }
-
 }
