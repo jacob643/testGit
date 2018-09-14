@@ -9,8 +9,8 @@ export interface Game {
     singleView: boolean;
 }
 
-export function createGame(id = 0, name = "defaultName", scoreSolo: ScoreBoard = undefined,
-    score1v1: ScoreBoard = undefined, imagePath = "defaultPath", singleView = true): Game {
+export function createGame(id = 0, name = "defaultName", scoreSolo: ScoreBoard | undefined = undefined,
+    score1v1: ScoreBoard | undefined = undefined, imagePath = "defaultPath", singleView = true): Game {
 
     if (!scoreSolo) {
         scoreSolo = createScoreBoard();
