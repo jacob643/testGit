@@ -7,7 +7,8 @@ export interface ScoreBoard {
     third: Score;
 }
 
-export function createScoreBoard(id = 0, first: Score = undefined, second: Score = undefined, third: Score = undefined): ScoreBoard {
+export function createScoreBoard(id = 0, first: Score | undefined = undefined, second: Score | undefined = undefined,
+    third: Score | undefined = undefined): ScoreBoard {
 
     if (!first) {
         first = createScore();
