@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Game, createGame } from './../../../common/game/game';
+import { Game, createGame } from './../../../../common/game/game';
 
 @Injectable({
     providedIn: 'root'
