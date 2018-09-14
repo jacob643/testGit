@@ -21,7 +21,7 @@ describe("UserController", () => {
 
     beforeEach(() => {
         controller = new UserController.Users();
-        user = { name: "Blah123", regexpression: /a/ };
+        user = { name: "Blah123"};
     })
 
     afterEach(() => {
@@ -59,7 +59,7 @@ describe("UserController", () => {
         })
 
         it("should not add name shorter than 4 chars", () => {
-            user = { name: "bbb", regexpression: /a/ }
+            user = { name: "bbb" }
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
@@ -67,7 +67,7 @@ describe("UserController", () => {
         });
 
         it("should not add name longer than 10 chars", () => {
-            user = { name: "12345678901", regexpression: /a/ }
+            user = { name: "12345678901" }
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
@@ -75,7 +75,7 @@ describe("UserController", () => {
         })
 
         it("should be impossible to have a name that isn't alphanumeric", () => {
-            user = { name: "blah+", regexpression: /a/ }
+            user = { name: "blah+" }
             req = mockReq({ body: { user: user } })
             controller.post(req, res, next)
             expect(controller.users).to.be.an('array').that.is.empty;
