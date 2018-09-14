@@ -44,13 +44,13 @@ describe("UserController", () => {
 
     describe("postUsers", () => {
         beforeEach(() => {
-            req = mockReq({ body: { user: user } });
+            req = mockReq({ body: user.name });
             res = mockRes();
         })
 
         it("should add a user to users property", () => {
             controller.post(req, res, next);
-            expect(controller.users).to.contain(user);
+            expect(controller.users).to.deep.include(user);
         });
 
         it("should send the user data back", () => {
@@ -59,17 +59,17 @@ describe("UserController", () => {
         })
 
         it("should not add name shorter than 4 chars", () => {
-            user = { name: "bbb" }
-            req = mockReq({ body: { user: user } })
-            controller.post(req, res, next)
+            user = { name: "bbb" };
+            req = mockReq({ body: user.name });
+            expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         });
 
         it("should not add name longer than 10 chars", () => {
-            user = { name: "12345678901" }
-            req = mockReq({ body: { user: user } })
-            controller.post(req, res, next)
+            user = { name: "12345678901" };
+            req = mockReq({ body: user.name });
+            expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })
@@ -77,7 +77,7 @@ describe("UserController", () => {
         it("should be impossible to have a name that isn't alphanumeric", () => {
             user = { name: "blah+" }
             req = mockReq({ body: { user: user } })
-            controller.post(req, res, next)
+            expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })

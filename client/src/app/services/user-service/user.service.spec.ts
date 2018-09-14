@@ -1,6 +1,6 @@
-import { User } from "../../../../common/user/user"
+import { User } from "../../../../../common/user/user"
 import { UserService } from './user.service';
-import { TestHelper } from "../../test.helper";
+import { TestHelper } from "../../../test.helper";
 import { } from "jasmine";
 
 let httpClientSpy: any;
@@ -12,7 +12,7 @@ describe('UserService', () => {
     beforeEach(() => {
         httpClientSpy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
         userService = new UserService(httpClientSpy);
-        user = { name: "Blah123", regexpression: /a/ };
+        user = { name: "Blah123" };
     });
 
     describe("GetUsers", () => {
@@ -34,13 +34,13 @@ describe('UserService', () => {
         it("should post a user to the http only once", () => {
             httpClientSpy.post.and.returnValue(TestHelper.asyncData(user));
 
-            userService.postUser(user).subscribe(
+            userService.postUser(user.name).subscribe(
                 (res: User) => {
                     expect(res).toEqual(user);
                 },
                 fail
             )
-            expect(httpClientSpy.post.calls.argsFor(0)).toContain(user, "body of the request is the user");
+            expect(httpClientSpy.post.calls.argsFor(0)).toContain(user.name, "body of the request is the user");
             expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
         });
     });

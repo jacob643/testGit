@@ -17,13 +17,14 @@ export module UserController {
         }
 
         public post(req: Request, res: Response, next: NextFunction): void {
-            let name = req.body.name
+            let name = req.body;
             if (REGEXP_USERNAME.test(name)) {
                 this.newUser.name = name;
                 this.users.push(this.newUser);
             }
             else {
                 res.status(500);
+                throw new Error("Alphanumeric only, 4-10 characters");
             }
             res.send(JSON.stringify(this.newUser));
         }

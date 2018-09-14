@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
 
-import { User } from "../../../../common/user/user";
+import { User } from "../../../../../common/user/user";
 
 @Injectable({
     providedIn: 'root'
