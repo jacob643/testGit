@@ -1,7 +1,7 @@
 import { BasicService } from "./basic.service";
-import { Message } from "../../../common/communication/message";
+import { Message } from "../../../../common/communication/message";
 import { } from "jasmine";
-import { TestHelper } from "../test.helper";
+import { TestHelper } from "../../test.helper";
 
 // tslint:disable-next-line:no-any Used to mock the http call
 let httpClientSpy: any;
