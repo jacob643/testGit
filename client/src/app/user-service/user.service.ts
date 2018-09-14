@@ -20,8 +20,8 @@ export class UserService {
         );
     }
 
-    public postUser(user: User): Observable<User> {
-        return this.http.post<User>(this.BASE_URL, user).pipe(
+    public postUser(name: string): Observable<User> {
+        return this.http.post<User>(this.BASE_URL, name).pipe(
             catchError(this.handleError<User>("PostUser"))
         );
     }
