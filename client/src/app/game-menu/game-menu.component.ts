@@ -11,16 +11,20 @@ export class GameMenuComponent implements OnInit {
 
     gameExample: Game;
 
-    gameExamples : Game[];
+    games : Game[];
 
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
-      this.getGameExamples();
+      this.getGames();
     }
 
     getGameExamples(): void {
-      this.gameExamples = this.gameService.generateExampleArray();
+//      this.gameExamples = this.gameService.generateExampleArray();
+    }
+
+    getGames(): void {
+        this.gameService.getGames().subscribe(games => this.games = games)
     }
 
 }
