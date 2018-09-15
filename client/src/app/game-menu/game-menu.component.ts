@@ -12,11 +12,15 @@ export class GameMenuComponent implements OnInit {
     gameExample: Game;
 
     games : Game[];
+    gamesSingleView : Game[];
+    gamesDoubleView : Game[];
 
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
       this.getGames();
+      this.getGamesDoubleView();
+      this.getGamesSingleView();
     }
 
     getGameExamples(): void {
@@ -25,6 +29,14 @@ export class GameMenuComponent implements OnInit {
 
     getGames(): void {
         this.gameService.getGames().subscribe(games => this.games = games)
+    }
+
+    getGamesSingleView(): void {
+        this.gameService.getGamesSingleView().subscribe(games => this.gamesSingleView = games)
+    }
+
+    getGamesDoubleView(): void {
+        this.gameService.getGamesDoubleView().subscribe(games => this.gamesDoubleView = games)
     }
 
 }
