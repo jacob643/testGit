@@ -3,7 +3,7 @@ import { GameMenuComponent } from './game-menu.component';
 import { GameDisplayComponent } from '../game-display/game-display.component';
 import { GameService } from '../services/game.service';
 //import { FormsModule } from "@angular/forms"
-//import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 //import { AppRouterModule } from "../router/approuter.module";
 //import { BrowserModule } from "@angular/platform-browser";
 
@@ -16,12 +16,12 @@ describe('GameMenuComponent', () => {
       declarations: [ GameMenuComponent,
                     GameDisplayComponent],
       providers: [GameService],
-      //imports: [
+      imports: [
          // BrowserModule,
-          //HttpClientModule,
+          HttpClientModule,
          // AppRouterModule,
          // FormsModule
-      //],
+      ],
     })
     .compileComponents();
   }));
