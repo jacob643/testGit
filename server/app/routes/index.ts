@@ -55,5 +55,22 @@ export module Route {
                 }
             });
         }
+        public getSingleViewGame(req: Request, res: Response, next: NextFunction): void {
+            var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
+            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Connected to our mongoDB!");
+
+                    //show games
+                    var games = db.db("npmdb").collection("games");
+                    games.find({singleView:true}).toArray(function(_err: any, docs: any) {
+                        res.send(JSON.stringify(docs));
+                    });
+                }
+            });
+
+        }
     }
 }

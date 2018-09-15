@@ -18,6 +18,8 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.index.showGames(req, res, next));
         router.post("/games",
             (req: Request, res: Response, next: NextFunction) => this.index.postGames(req, res, next));
+        router.get("/games/singleView",
+            (req: Request, res: Response, next: NextFunction) => this.index.getSingleViewGame(req, res, next));
         return router;
     }
 }
