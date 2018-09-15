@@ -16,7 +16,8 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.index.helloWorld(req, res, next));
         router.get("/games",
             (req: Request, res: Response, next: NextFunction) => this.index.showGames(req, res, next));
-
+        router.post("/games",
+            (req: Request, res: Response, next: NextFunction) => this.index.postGames(req, res, next));
         return router;
     }
 }
