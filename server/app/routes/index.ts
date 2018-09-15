@@ -3,6 +3,8 @@ import { Message } from "../../../common/communication/message";
 import "reflect-metadata";
 import { injectable, } from "inversify";
 import { MongoClient } from "mongodb";
+import { Game, createGame } from "../../../common/game/game";
+import { ScoreBoard, createScoreBoard } from '../../../common/game/scoreBoard';
 
 export module Route {
 
@@ -30,6 +32,26 @@ export module Route {
                     games.find().toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
                     });
+                }
+            });
+
+        }
+        public postGames(req: Request, res: Response, next: NextFunction): void {
+            var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
+            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
+                console.log(req.body.name);
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Connected to our mongoDB!");
+                    var scoreBoard : ScoreBoard = createScoreBoard();
+                    var game : Game  = createGame(1,req.body.name,scoreBoard,scoreBoard,"",true);
+                    //post games
+                    db.db("npmdb").collection("games").insertOne(game,function(error,_res){
+                      if (error) throw error;
+                      console.log("inserted game!");
+                  });
+                    res.send(JSON.stringify(game));
                 }
             });
         }
