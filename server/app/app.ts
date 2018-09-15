@@ -7,7 +7,7 @@ import * as cors from "cors";
 import Types from "./types";
 import { injectable, inject } from "inversify";
 import { Routes } from "./routes";
-import DbClient = require("./routes/database")
+//import DbClient = require("./routes/database")
 
 @injectable()
 export class Application {
@@ -75,7 +75,7 @@ export class Application {
         });
     }
 
-    public async mongoStart() {
-        DbClient.connect();
-    }
+    //public async mongoStart() {
+    //    DbClient.connect();
+    //}
 }

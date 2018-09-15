@@ -13,7 +13,7 @@ class DbClient {
                 console.log("Connected to our mongoDB!");
             }
 
-
+/*
             //Add game to database:
             var database = db.db("npmdb");
             var games = database.collection("games");
@@ -22,7 +22,7 @@ class DbClient {
             games.insertOne(game1,function(error,_res){
               if (error) throw error;
               console.log("inserted game!");
-            })
+          })*/
         });
     }
 }
