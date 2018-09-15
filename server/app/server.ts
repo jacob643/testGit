@@ -15,6 +15,7 @@ export class Server {
 
     public init(): void {
         this.application.app.set("port", this.appPort);
+        this.application.mongoStart();
 
         this.server = http.createServer(this.application.app);
 
