@@ -19,9 +19,9 @@ export class BasicService {
         );
     }
 
-    private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
+    private handleError<T>(_request: string, result?: T): (error: Error) => Observable<T> {
 
-        return (error: Error): Observable<T> => {
+        return (_error: Error): Observable<T> => {
             return of(result as T);
         };
     }
