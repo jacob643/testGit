@@ -23,10 +23,6 @@ export class GameMenuComponent implements OnInit {
       this.getGamesSingleView();
     }
 
-    getGameExamples(): void {
-//      this.gameExamples = this.gameService.generateExampleArray();
-    }
-
     getGames(): void {
         this.gameService.getGames().subscribe(games => this.games = games)
     }
