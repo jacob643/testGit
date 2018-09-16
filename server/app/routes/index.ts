@@ -44,13 +44,13 @@ export module Route {
                     console.log(err);
                 } else {
                     console.log("Connected to our mongoDB!");
-                    var scoreBoard : ScoreBoard = createScoreBoard();
-                    var game : Game  = createGame(1,req.body.name,scoreBoard,scoreBoard,"",true);
+                    var scoreBoard: ScoreBoard = createScoreBoard();
+                    var game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
                     //post games
-                    db.db("npmdb").collection("games").insertOne(game,function(error,_res){
-                      if (error) throw error;
-                      console.log("inserted game!");
-                  });
+                    db.db("npmdb").collection("games").insertOne(game, function(error, _res) {
+                        if (error) throw error;
+                        console.log("inserted game!");
+                    });
                     res.send(JSON.stringify(game));
                 }
             });
@@ -65,7 +65,7 @@ export module Route {
 
                     //show games
                     var games = db.db("npmdb").collection("games");
-                    games.find({singleView:true}).toArray(function(_err: any, docs: any) {
+                    games.find({ singleView: true }).toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
                     });
                 }
@@ -82,11 +82,12 @@ export module Route {
 
                     //show games
                     var games = db.db("npmdb").collection("games");
-                    games.find({singleView:false}).toArray(function(_err: any, docs: any) {
+                    games.find({ singleView: false }).toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
                     });
                 }
             });
 
         }
+    }
 }
