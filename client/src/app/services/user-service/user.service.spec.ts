@@ -40,7 +40,7 @@ describe('UserService', () => {
                 },
                 fail
             )
-            expect(httpClientSpy.post.calls.argsFor(0)).toContain(user.name, "body of the request is the user");
+            expect(httpClientSpy.post.calls.argsFor(0)).toContain({ name: user.name }, "body of the request is the user");
             expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
         });
     });
