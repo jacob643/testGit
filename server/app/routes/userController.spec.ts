@@ -2,9 +2,9 @@ import { NextFunction } from "express";
 import { expect } from "chai";
 import { mockReq, mockRes } from 'sinon-express-mock'
 import "reflect-metadata";
-let chai = require("chai");
-let sinon = require("sinon");
-var sinonChai = require("sinon-chai");
+const chai = require("chai");
+const sinon = require("sinon");
+const sinonChai = require("sinon-chai");
 
 import { UserController } from "./userController"
 import { User, createUser } from "../../../common/user/user"
@@ -44,7 +44,7 @@ describe("UserController", () => {
 
     describe("postUsers", () => {
         beforeEach(() => {
-            req = mockReq({ body: {name: user.name} });
+            req = mockReq({ body: { name: user.name } });
             res = mockRes();
         })
 
@@ -60,7 +60,7 @@ describe("UserController", () => {
 
         it("should not add name shorter than 4 chars", () => {
             user = createUser("bbb");
-            req = mockReq({ body: {name: user.name} });
+            req = mockReq({ body: { name: user.name } });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
@@ -68,7 +68,7 @@ describe("UserController", () => {
 
         it("should not add name longer than 10 chars", () => {
             user = createUser("12345678901");
-            req = mockReq({ body: {name: user.name} });
+            req = mockReq({ body: { name: user.name } });
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
@@ -76,7 +76,7 @@ describe("UserController", () => {
 
         it("should be impossible to have a name that isn't alphanumeric", () => {
             user = createUser("blah+");
-            req = mockReq({ body: {name: user.name} })
+            req = mockReq({ body: { name: user.name } })
             expect(() => controller.post(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
@@ -92,7 +92,7 @@ describe("UserController", () => {
 
     describe("getUser", () => {
         beforeEach(() => {
-            req = mockReq({ param: {name: user.name} });
+            req = mockReq({ param: { name: user.name } });
             res = mockRes();
         })
 
