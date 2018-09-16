@@ -29,4 +29,22 @@ describe('GameMenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a list of games', async() => {
+    setTimeout(() => {
+      expect(component.games).toBeDefined();
+    }, 1000);
+  })
+
+  it('should have a list of games in single view', async() => {
+    setTimeout(() => {
+      expect(component.gamesSingleView).toBeTruthy();
+    }, 1000);
+  })
+
+  it('should have a list of games in double view', async() => {
+    setTimeout(() => {
+      expect(component.gamesDoubleView).toBeTruthy();
+    }, 1000);
+  })
 });
