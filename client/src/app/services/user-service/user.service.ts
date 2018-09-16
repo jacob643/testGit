@@ -32,8 +32,8 @@ export class UserService {
         );
     }
 
-    public handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
-        return (error: Error): Observable<T> => {
+    public handleError<T>(_request: string, result?: T): (error: Error) => Observable<T> {
+        return (_error: Error): Observable<T> => {
             return of(result as T);
         };
     }
