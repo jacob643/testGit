@@ -11,7 +11,7 @@ export module Route {
     @injectable()
     export class Index {
 
-        public helloWorld(req: Request, res: Response, next: NextFunction): void {
+        public helloWorld(_req: Request, res: Response, _next: NextFunction): void {
             const message: Message = {
                 title: "Hello",
                 body: "World"
@@ -19,7 +19,7 @@ export module Route {
             res.send(JSON.stringify(message));
         }
 
-        public showGames(req: Request, res: Response, next: NextFunction): void {
+        public showGames(_req: Request, res: Response, _next: NextFunction): void {
             var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
                 if (err) {
@@ -36,7 +36,7 @@ export module Route {
             });
 
         }
-        public postGames(req: Request, res: Response, next: NextFunction): void {
+        public postGames(req: Request, res: Response, _next: NextFunction): void {
             var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
                 console.log(req.body.name);
@@ -55,7 +55,7 @@ export module Route {
                 }
             });
         }
-        public getSingleViewGame(req: Request, res: Response, next: NextFunction): void {
+        public getSingleViewGame(_req: Request, res: Response, _next: NextFunction): void {
             var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
                 if (err) {
@@ -72,7 +72,7 @@ export module Route {
             });
 
         }
-        public getDoubleViewGame(req: Request, res: Response, next: NextFunction): void {
+        public getDoubleViewGame(_req: Request, res: Response, _next: NextFunction): void {
             var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
                 if (err) {
