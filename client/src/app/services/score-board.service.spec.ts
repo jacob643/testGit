@@ -1,5 +1,4 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { ScoreBoardService } from './score-board.service';
 
 describe('ScoreBoardService', () => {

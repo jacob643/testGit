@@ -1,3 +1,13 @@
-<h1>Blah</h1>
-<input [(ngModel)]="user.name" placeholder="your name here">
-<h1>{{user.name}}</h1>
+<h1>Please enter your nickname</h1>
+<div class="warning-message">Alphanumeric only, 4-10 characters.</div>
+
+<!-- Input field for username -->
+<div class="input-centered">
+  <input [(ngModel)]="name" placeholder="Your nickname here">
+</div>
+
+<br>
+<!-- Button for submission and launching testing -->
+<div class="button-centered">
+  <input type="button" value="Enter" (click)="postUser()">
+</div>

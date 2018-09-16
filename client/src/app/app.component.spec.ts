@@ -23,5 +23,4 @@ describe("AppComponent", () => {
             providers: [BasicService, { provide: APP_BASE_HREF, useValue: '/' }]
         }).compileComponents();
     }));
-
 });
