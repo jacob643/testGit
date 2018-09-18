@@ -5,18 +5,19 @@ import { GameService } from '../services/game.service';
 @Component({
     selector: 'app-admin-view',
     templateUrl: './admin-view.component.html',
-    styleUrls: ['./admin-view.component.scss']
+    styleUrls: ['./admin-view.component.scss'],
+    host: { 'class': 'center' }
 })
 export class AdminViewComponent implements OnInit {
 
-    gamesSingleView : Game[];
-    gamesDoubleView : Game[];
+    gamesSingleView: Game[];
+    gamesDoubleView: Game[];
 
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
-      this.getGamesDoubleView();
-      this.getGamesSingleView();
+        this.getGamesDoubleView();
+        this.getGamesSingleView();
     }
 
     getGamesSingleView(): void {

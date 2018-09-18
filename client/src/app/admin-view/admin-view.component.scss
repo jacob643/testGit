@@ -3,10 +3,16 @@ div.column{
     width: 50%;
 }
 div.box{
+    height: 100%;
     overflow: scroll;
 }
 header{
     width: 100%;
     text-align: center;
 
+}
+
+.top {
+    background: red;
+    justify-content: center
 }
