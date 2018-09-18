@@ -1,50 +1,59 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { GameMenuComponent } from './game-menu.component';
 import { GameDisplayComponent } from '../game-display/game-display.component';
 import { GameService } from '../services/game.service';
 import { HttpClientModule } from "@angular/common/http";
+import { Game } from "./../../../../common/game/game";
+import { of } from 'rxjs';
 
 describe('GameMenuComponent', () => {
-  let component: GameMenuComponent;
-  let fixture: ComponentFixture<GameMenuComponent>;
+    let component: GameMenuComponent;
+    let fixture: ComponentFixture<GameMenuComponent>;
+    let games: Game[];
+    let gameService: GameService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GameMenuComponent,
-                    GameDisplayComponent],
-      providers: [GameService],
-      imports: [
-          HttpClientModule,
-      ],
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [GameMenuComponent,
+                GameDisplayComponent],
+            providers: [GameService],
+            imports: [
+                HttpClientModule,
+            ],
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(inject([GameService], (g: GameService) => {
+        games = new Array<Game>();
+        gameService = g
+        fixture = TestBed.createComponent(GameMenuComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }));
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should have a list of games', async () => {
+        spyOn(gameService, 'getGames').and.returnValue(of(games));
+        component.getGames();
+        fixture.detectChanges();
+        expect(component.games).toEqual(games);
     })
-    .compileComponents();
-  }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GameMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    it('should have a list of games in single view', async () => {
+        spyOn(gameService, 'getGamesSingleView').and.returnValue(of(games));
+        component.getGamesSingleView();
+        fixture.detectChanges();
+        expect(component.gamesSingleView).toEqual(games);
+    })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should have a list of games', async() => {
-    setTimeout(() => {
-      expect(component.games).toBeDefined();
-    }, 1000);
-  })
-
-  it('should have a list of games in single view', async() => {
-    setTimeout(() => {
-      expect(component.gamesSingleView).toBeTruthy();
-    }, 1000);
-  })
-
-  it('should have a list of games in double view', async() => {
-    setTimeout(() => {
-      expect(component.gamesDoubleView).toBeTruthy();
-    }, 1000);
-  })
+    it('should have a list of games in double view', async () => {
+        spyOn(gameService, 'getGamesDoubleView').and.returnValue(of(games));
+        component.getGamesDoubleView();
+        fixture.detectChanges();
+        expect(component.gamesDoubleView).toEqual(games);
+    })
 });

@@ -3,24 +3,24 @@ import { Game } from './../../../../common/game/game';
 import { GameService } from '../services/game.service';
 
 @Component({
-  selector: 'app-game-menu',
-  templateUrl: './game-menu.component.html',
-  styleUrls: ['./game-menu.component.scss']
+    selector: 'app-game-menu',
+    templateUrl: './game-menu.component.html',
+    styleUrls: ['./game-menu.component.scss']
 })
 export class GameMenuComponent implements OnInit {
 
     gameExample: Game;
 
-    games : Game[];
-    gamesSingleView : Game[];
-    gamesDoubleView : Game[];
+    games: Game[] = new Array<Game>();
+    gamesSingleView: Game[] = new Array<Game>();
+    gamesDoubleView: Game[] = new Array<Game>();
 
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
-      this.getGames();
-      this.getGamesDoubleView();
-      this.getGamesSingleView();
+        this.getGames();
+        this.getGamesDoubleView();
+        this.getGamesSingleView();
     }
 
     getGames(): void {

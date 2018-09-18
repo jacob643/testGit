@@ -9,19 +9,19 @@ export class GameService {
 
     constructor(private http: HttpClient) { }
 
-    public post(name: string): Observable<Game>{
-        return this.http.post<Game>("http://localhost:3000/games",{name});
+    public post(name: string): Observable<Game> {
+        return this.http.post<Game>("http://localhost:3000/games", { name: name });
     }
 
-    public getGames(): Observable<Game[]>{
+    public getGames(): Observable<Game[]> {
         return this.http.get<Game[]>("http://localhost:3000/games");
     }
 
-    public getGamesSingleView(): Observable<Game[]>{
+    public getGamesSingleView(): Observable<Game[]> {
         return this.http.get<Game[]>("http://localhost:3000/games/singleView");
     }
 
-    public getGamesDoubleView(): Observable<Game[]>{
+    public getGamesDoubleView(): Observable<Game[]> {
         return this.http.get<Game[]>("http://localhost:3000/games/doubleView");
     }
 }
