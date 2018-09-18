@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { GameDisplayComponent } from '../game-display/game-display.component';
+import { GameService } from '../services/game.service';
+import { HttpClientModule } from "@angular/common/http";
 import { AdminViewComponent } from './admin-view.component';
 
 describe('AdminViewComponent', () => {
@@ -8,7 +10,12 @@ describe('AdminViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AdminViewComponent]
+            declarations: [AdminViewComponent,
+                          GameDisplayComponent],
+            providers: [GameService],
+            imports: [
+                HttpClientModule,
+            ],
         })
             .compileComponents();
     }));
