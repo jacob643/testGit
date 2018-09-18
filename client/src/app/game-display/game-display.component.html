@@ -27,10 +27,15 @@
         <td>{{game.scoreSolo.third.name}} : {{game.scoreSolo.third.time}}</td>
         <td>{{game.score1v1.third.name}} : {{game.score1v1.third.time}}</td>
       </tr>
-      <tr>
-        <td><button>Jouer</button></td>
-        <td><button>Créer</button></td>
+      <tr *ngIf="admin; else elseBlock">
+        <td><button>Supprimer</button></td>
+        <td><button>Réinitialiser</button></td>
       </tr>
+       <ng-template #elseBlock>
+         <td><button>Jouer</button></td>
+         <td><button>Créer</button></td>
+       </ng-template>
+
     </table>
   </div>
 
