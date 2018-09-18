@@ -9,6 +9,7 @@ import { Game, createGame } from './../../../../common/game/game';
 export class GameDisplayComponent implements OnInit {
 
   @Input() game :Game;
+  @Input() admin: Boolean;
 
   constructor() {
       this.game = createGame();
