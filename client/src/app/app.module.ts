@@ -11,7 +11,6 @@ import { InitialViewComponent } from './inital-view/initial-view.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
 import { AppRouterModule } from "./router/approuter.module";
 import { GameMenuComponent } from './game-menu/game-menu.component';
-import { AdminViewComponent } from './admin-view/admin-view.component';
 
 @NgModule({
     declarations: [
