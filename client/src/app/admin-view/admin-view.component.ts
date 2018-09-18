@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from './../../../../common/game/game';
+import { GameService } from '../services/game.service';
 
 @Component({
     selector: 'app-admin-view',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminViewComponent implements OnInit {
 
-    constructor() { }
+    gamesSingleView : Game[];
+    gamesDoubleView : Game[];
+
+    constructor(private gameService: GameService) { }
 
     ngOnInit() {
+      this.getGamesDoubleView();
+      this.getGamesSingleView();
+    }
+
+    getGamesSingleView(): void {
+        this.gameService.getGamesSingleView().subscribe(games => this.gamesSingleView = games)
+    }
+
+    getGamesDoubleView(): void {
+        this.gameService.getGamesDoubleView().subscribe(games => this.gamesDoubleView = games)
     }
 
 }
