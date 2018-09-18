@@ -7,6 +7,7 @@ import * as cors from "cors";
 import Types from "./types";
 import { injectable, inject } from "inversify";
 import { Routes } from "./routes";
+//import DbClient = require("./routes/database")
 
 @injectable()
 export class Application {
@@ -44,7 +45,7 @@ export class Application {
 
     private errorHandeling(): void {
         // Gestion des erreurs
-        this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+        this.app.use((_req: express.Request, _res: express.Response, next: express.NextFunction) => {
             const err: Error = new Error("Not Found");
             next(err);
         });
@@ -53,7 +54,7 @@ export class Application {
         // will print stacktrace
         if (this.app.get("env") === "development") {
             // tslint:disable-next-line:no-any
-            this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+            this.app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
                 res.status(err.status || this.internalError);
                 res.send({
                     message: err.message,
@@ -65,7 +66,7 @@ export class Application {
         // production error handler
         // no stacktraces leaked to user (in production env only)
         // tslint:disable-next-line:no-any
-        this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+        this.app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
             res.status(err.status || this.internalError);
             res.send({
                 message: err.message,
@@ -73,4 +74,8 @@ export class Application {
             });
         });
     }
+
+    //public async mongoStart() {
+    //    DbClient.connect();
+    //}
 }

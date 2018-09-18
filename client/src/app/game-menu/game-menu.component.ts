@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from './../../../../common/game/game';
-import { GameService } from '../game.service';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-game-menu',
@@ -11,20 +11,28 @@ export class GameMenuComponent implements OnInit {
 
     gameExample: Game;
 
-    gameExamples : Game[];
+    games : Game[];
+    gamesSingleView : Game[];
+    gamesDoubleView : Game[];
 
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
-      this.getGameExample();
-      this.getGameExamples();
+      this.getGames();
+      this.getGamesDoubleView();
+      this.getGamesSingleView();
     }
 
-    getGameExample(): void {
-      this.gameExample = this.gameService.generateExample();
+    getGames(): void {
+        this.gameService.getGames().subscribe(games => this.games = games)
     }
-    getGameExamples(): void {
-      this.gameExamples = this.gameService.generateExampleArray();
+
+    getGamesSingleView(): void {
+        this.gameService.getGamesSingleView().subscribe(games => this.gamesSingleView = games)
+    }
+
+    getGamesDoubleView(): void {
+        this.gameService.getGamesDoubleView().subscribe(games => this.gamesDoubleView = games)
     }
 
 }
