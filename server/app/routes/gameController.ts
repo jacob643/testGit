@@ -13,53 +13,49 @@ export module GameController {
 
     @injectable()
     export class Games {
-        public showGames(_req: Request, res: Response, _next: NextFunction): void {
+        private connect(func: Function): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
                     throw err;
-                } else {
-                    let games = db.db(DB_NAME).collection(COLLECTION_NAME);
-                    games.find().toArray(function(_err: any, docs: any) {
-                        res.send(JSON.stringify(docs));
-                    });
                 }
+                func(db);
             });
-
         }
+
+        public showGames(_req: Request, res: Response, _next: NextFunction): void {
+            this.connect((db: any) => {
+                let games = db.db(DB_NAME).collection(COLLECTION_NAME);
+                games.find().toArray(function(_err: any, docs: any) {
+                    res.send(JSON.stringify(docs));
+                })
+            });
+        }
+
         public postGames(req: Request, res: Response, _next: NextFunction): void {
-            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
-                if (err) {
-                    throw err;
-                }
+            this.connect((db: any) => {
                 let scoreBoard: ScoreBoard = createScoreBoard();
                 let game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
                 db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
                     if (error) throw error;
-                });
+                })
                 res.send(JSON.stringify(game));
             });
         }
         public getSingleViewGame(_req: Request, res: Response, _next: NextFunction): void {
-            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
-                if (err) {
-                    throw err;
-                }
+            this.connect((db: any) => {
                 let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                 games.find({ singleView: true }).toArray(function(_err: Error, docs: any) {
                     res.send(JSON.stringify(docs));
-                });
+                })
             });
 
         }
         public getDoubleViewGame(_req: Request, res: Response, _next: NextFunction): void {
-            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
-                if (err) {
-                    throw err
-                }
+            this.connect((db: any) => {
                 let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                 games.find({ singleView: false }).toArray(function(_err: any, docs: any) {
                     res.send(JSON.stringify(docs));
-                });
+                })
             });
         }
     }
