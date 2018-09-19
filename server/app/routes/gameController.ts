@@ -14,10 +14,8 @@ export module GameController {
         public showGames(_req: Request, res: Response, _next: NextFunction): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
-                    console.log(err);
+                    throw err;
                 } else {
-                    console.log("Connected to our mongoDB!");
-                    //show games
                     var games = db.db("npmdb").collection("games");
                     games.find().toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
@@ -28,11 +26,9 @@ export module GameController {
         }
         public postGames(req: Request, res: Response, _next: NextFunction): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
-                console.log(req.body.name);
                 if (err) {
-                    console.log(err);
+                    throw err;
                 } else {
-                    console.log("Connected to our mongoDB!");
                     var scoreBoard: ScoreBoard = createScoreBoard();
                     var game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
                     //post games
@@ -47,11 +43,8 @@ export module GameController {
         public getSingleViewGame(_req: Request, res: Response, _next: NextFunction): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
-                    console.log(err);
+                    throw err;
                 } else {
-                    console.log("Connected to our mongoDB!");
-
-                    //show games
                     var games = db.db("npmdb").collection("games");
                     games.find({ singleView: true }).toArray(function(_err: Error, docs: any) {
                         res.send(JSON.stringify(docs));
@@ -63,11 +56,8 @@ export module GameController {
         public getDoubleViewGame(_req: Request, res: Response, _next: NextFunction): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
-                    console.log(err);
+                    throw err
                 } else {
-                    console.log("Connected to our mongoDB!");
-
-                    //show games
                     var games = db.db("npmdb").collection("games");
                     games.find({ singleView: false }).toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
