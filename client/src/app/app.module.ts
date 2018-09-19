@@ -12,6 +12,9 @@ import { AppRouterModule } from "./router/approuter.module";
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 
+import { UserService } from './services/user-service/user.service'
+import { GameService } from './services/game.service'
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -28,7 +31,11 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
         AppRouterModule,
         FormsModule
     ],
-    providers: [BasicService],
+    providers: [
+        BasicService,
+        UserService,
+        GameService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
