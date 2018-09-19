@@ -3,5 +3,6 @@ export default {
     Application: Symbol("Application"),
     Routes: Symbol("Routes"),
     Index: Symbol("Index"),
-    Users: Symbol("Users")
+    Users: Symbol("Users"),
+    Games: Symbol("Games")
 };

@@ -4,14 +4,15 @@ import { Router, Request, Response, NextFunction } from "express";
 import Types from "./types";
 import { Route } from "./routes/index";
 import { UserController } from "./routes/userController";
+import { GameController } from "./routes/gameController";
 
 @injectable()
 export class Routes {
 
     public constructor(
         @inject(Types.Index) private index: Route.Index,
-        @inject(Types.Users) private users: UserController.Users) { }
-
+        @inject(Types.Users) private users: UserController.Users,
+        @inject(Types.Games) private games: GameController.Games) { }
     public get routes(): Router {
         const router: Router = Router();
 
@@ -19,13 +20,13 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.index.helloWorld(req, res, next));
 
         router.get("/games",
-            (req: Request, res: Response, next: NextFunction) => this.index.showGames(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.games.showGames(req, res, next));
         router.post("/games",
-            (req: Request, res: Response, next: NextFunction) => this.index.postGames(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.games.postGames(req, res, next));
         router.get("/games/singleView",
-            (req: Request, res: Response, next: NextFunction) => this.index.getSingleViewGame(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.games.getSingleViewGame(req, res, next));
         router.get("/games/doubleView",
-            (req: Request, res: Response, next: NextFunction) => this.index.getDoubleViewGame(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.games.getDoubleViewGame(req, res, next));
 
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
