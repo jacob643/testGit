@@ -18,7 +18,7 @@ export module GameController {
                 if (err) {
                     throw err;
                 } else {
-                    var games = db.db(DB_NAME).collection(COLLECTION_NAME);
+                    let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                     games.find().toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
                     });
@@ -31,8 +31,8 @@ export module GameController {
                 if (err) {
                     throw err;
                 }
-                var scoreBoard: ScoreBoard = createScoreBoard();
-                var game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
+                let scoreBoard: ScoreBoard = createScoreBoard();
+                let game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
                 db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
                     if (error) throw error;
                 });
@@ -44,7 +44,7 @@ export module GameController {
                 if (err) {
                     throw err;
                 }
-                var games = db.db(DB_NAME).collection(COLLECTION_NAME);
+                let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                 games.find({ singleView: true }).toArray(function(_err: Error, docs: any) {
                     res.send(JSON.stringify(docs));
                 });
@@ -56,7 +56,7 @@ export module GameController {
                 if (err) {
                     throw err
                 }
-                var games = db.db(DB_NAME).collection(COLLECTION_NAME);
+                let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                 games.find({ singleView: false }).toArray(function(_err: any, docs: any) {
                     res.send(JSON.stringify(docs));
                 });
