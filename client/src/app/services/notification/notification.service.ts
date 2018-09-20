@@ -5,7 +5,7 @@ import { Notification, createNotification } from '../../../../../common/communic
     providedIn: 'root'
 })
 export class NotificationService {
-    notification: Notification = createNotification();
+    public notification: Notification = createNotification();
 
     constructor() { }
 }
