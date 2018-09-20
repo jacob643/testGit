@@ -15,6 +15,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { UserService } from './services/user-service/user.service'
 import { GameService } from './services/game.service'
 import { ErrorsHandler } from "./services/errorhandler/errorhandler.service";
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { ErrorsHandler } from "./services/errorhandler/errorhandler.service";
         GameDisplayComponent,
         InitialViewComponent,
         GameMenuComponent,
-        AdminViewComponent
+        AdminViewComponent,
+        NotificationComponent
     ],
     imports: [
         BrowserModule,
