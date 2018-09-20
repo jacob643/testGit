@@ -43,6 +43,9 @@ export module UserController {
                     index = i;
                 }
             }
+            if (index == -1) {
+                throw new Error("Name doesn't exist");
+            }
             let user = this.users.splice(index, 1)[0];
             res.send(JSON.stringify(user));
         }
