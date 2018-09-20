@@ -104,19 +104,26 @@ describe("UserController", () => {
     });
 
     describe("deleteUser", () => {
+        let user2: User;
+
         beforeEach(() => {
             req = mockReq({ body: { name: user.name } });
             res = mockRes();
+            user2 = createUser();
+            controller.users.push(user);
+            controller.users.push(user2);
         });
 
         it("should delete only one user", () => {
-            let user2 = createUser();
-            controller.users.push(user);
-            controller.users.push(user2);
             controller.deleteUser(req, res, next);
             expect(controller.users.length).to.equal(1);
             expect(controller.users).not.to.contain(user);
             expect(res.send).to.have.been.calledWith(JSON.stringify(user));
+        });
+
+        it("should throw if name doesn't exist", () => {
+            req = mockReq({ body: { name: "i dont exist" } });
+            expect(() => controller.deleteUser(req, res, next)).to.throw()
         });
 
     });
