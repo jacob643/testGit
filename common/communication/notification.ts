@@ -9,7 +9,6 @@ export const OK: number = 2;
 
 export function createNotification(text = "", status = ERROR): Notification {
     return {
-        this.text = text
-        this.status = status
+        text: text, status: status
     }
 }
