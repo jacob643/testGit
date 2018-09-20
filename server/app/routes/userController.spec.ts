@@ -102,4 +102,23 @@ describe("UserController", () => {
             expect(res.send).to.be.calledWith(JSON.stringify(user));
         });
     });
+
+    describe("deleteUser", () => {
+        beforeEach(() => {
+            req = mockReq({ body: { name: user.name } });
+            res = mockRes();
+        });
+
+        it("should delete only one user", () => {
+            let user2 = createUser();
+            controller.users.push(user);
+            controller.users.push(user2);
+            controller.deleteUser(req, res, next);
+            expect(controller.users.length).to.equal(1);
+            expect(controller.users).not.to.contain(user);
+            expect(res.send).to.have.been.calledWith(user);
+        });
+
+    });
+
 });
