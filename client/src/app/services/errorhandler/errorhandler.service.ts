@@ -1,7 +1,6 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { of } from 'rxjs';
 import { NotificationService } from '../notification/notification.service';
-import { ERROR, createNotification } from "../../../../../common/communication/notification"
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +23,7 @@ export class ErrorsHandler implements ErrorHandler {
 
     private notify(error: Error): void {
         const notificationService = this.injector.get(NotificationService);
-        notificationService.notification = createNotification(error.message, ERROR);
+        notificationService.error(error.message);
         console.error(error);
     }
 }
