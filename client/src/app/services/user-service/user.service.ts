@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { ErrorsHandler } from '../errorhandler/errorhandler.service'
 
 import { User } from "../../../../../common/user/user";
 
@@ -12,29 +13,23 @@ import { User } from "../../../../../common/user/user";
 export class UserService {
 
     private readonly BASE_URL: string = "http://localhost:3000/users";
-    public constructor(private http: HttpClient) { }
+    public constructor(private http: HttpClient, private errorHandler: ErrorsHandler) { }
 
     public getUsers(): Observable<User[]> {
         return this.http.get<User[]>(this.BASE_URL).pipe(
-            catchError(this.handleError<User[]>("GetUsers"))
+            catchError(this.errorHandler.handleAsyncError<User[]>())
         );
     }
 
     public postUser(name: string): Observable<User> {
         return this.http.post<User>(this.BASE_URL, { name }).pipe(
-            catchError(this.handleError<User>("PostUser"))
+            catchError(this.errorHandler.handleAsyncError<User>())
         );
     }
 
     public getUser(name: string): Observable<User> {
         return this.http.get<User>(this.BASE_URL + '/' + name).pipe(
-            catchError(this.handleError<User>("GetUser"))
+            catchError(this.errorHandler.handleAsyncError<User>())
         );
-    }
-
-    public handleError<T>(_request: string, result?: T): (error: Error) => Observable<T> {
-        return (_error: Error): Observable<T> => {
-            return of(result as T);
-        };
     }
 }

@@ -11,11 +11,12 @@ import { StopwatchComponent } from './stopwatch/stopwatch.component';
 import { AppRouterModule } from "./router/approuter.module";
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
+import { NotificationComponent } from './notification/notification.component';
 
 import { UserService } from './services/user-service/user.service'
+import { NotificationService } from './services/notification/notification.service'
 import { GameService } from './services/game.service'
 import { ErrorsHandler } from "./services/errorhandler/errorhandler.service";
-import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { NotificationComponent } from './notification/notification.component';
         {
             provide: ErrorHandler,
             useClass: ErrorsHandler,
-        }
+        },
+        NotificationService
     ],
     bootstrap: [AppComponent]
 })

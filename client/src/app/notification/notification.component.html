@@ -1,6 +1,6 @@
 <div *ngIf="notificationService.notification">
   <button class="clear"
           (click)="notificationService.clear()">clear</button>
-  <div> {{notificationService.notification}} </div>
+  <div> {{notificationService.notification.text}} </div>
 
 </div>
