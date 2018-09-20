@@ -33,6 +33,8 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));
         router.get("/users/:name",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
+        router.delete("users",
+            (req: Request, res: Response, next: NextFunction) => this.users.deleteUser(req, res, next));
 
         return router;
     }
