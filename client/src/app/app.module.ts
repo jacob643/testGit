@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, ErrorHandler } from "@angular/core";
 import { FormsModule } from "@angular/forms"
 
 import { AppComponent } from "./app.component";
@@ -14,6 +14,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 
 import { UserService } from './services/user-service/user.service'
 import { GameService } from './services/game.service'
+import { ErrorsHandler } from "./services/errorhandler/errorhandler.service";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,11 @@ import { GameService } from './services/game.service'
     providers: [
         BasicService,
         UserService,
-        GameService
+        GameService,
+        {
+            provide: ErrorHandler,
+            useClass: ErrorsHandler,
+        }
     ],
     bootstrap: [AppComponent]
 })
