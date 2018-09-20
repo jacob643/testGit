@@ -36,11 +36,12 @@ describe('InitialViewComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should have a user', () => {
+    it('should be able to post user', () => {
         spyOn(userService, 'postUser').and.returnValue(of(user));
         component.name = user.name
         component.postUser();
         fixture.detectChanges();
         expect(component.user).toEqual(user);
+        expect(userService.postUser).toHaveBeenCalledWith(component.name)
     })
 });
