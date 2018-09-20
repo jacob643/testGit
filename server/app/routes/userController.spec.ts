@@ -116,7 +116,7 @@ describe("UserController", () => {
             controller.deleteUser(req, res, next);
             expect(controller.users.length).to.equal(1);
             expect(controller.users).not.to.contain(user);
-            expect(res.send).to.have.been.calledWith(user);
+            expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         });
 
     });

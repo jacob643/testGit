@@ -36,7 +36,15 @@ export module UserController {
         }
 
         public deleteUser(req: Request, res: Response, next: NextFunction): void {
-
+            let name: string = req.body.name;
+            let index: number = -1;
+            for (let i = 0; i < this.users.length; i++) {
+                if (this.users[i].name == name) {
+                    index = i;
+                }
+            }
+            let user = this.users.splice(index, 1)[0];
+            res.send(JSON.stringify(user));
         }
     }
 }
