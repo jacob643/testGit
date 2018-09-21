@@ -28,7 +28,7 @@
         <td>{{game.score1v1.third.name}} : {{game.score1v1.third.time}}</td>
       </tr>
       <tr>
-        <td><button routerLink="/game" [queryParams]="{gameID: this.game.id}">Jouer</button></td>
+        <td><button (click)="playGame()">Jouer</button></td>
         <td><button>Créer</button></td>
       </tr>
     </table>
