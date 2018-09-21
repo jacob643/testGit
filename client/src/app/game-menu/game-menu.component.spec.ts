@@ -36,6 +36,7 @@ describe('GameMenuComponent', () => {
         expect(component).toBeTruthy();
     });
 
+<<<<<<< HEAD
     it('should have a list of games', async () => {
         spyOn(gameService, 'getGames').and.returnValue(of(games));
         component.getGames();
@@ -56,4 +57,23 @@ describe('GameMenuComponent', () => {
         fixture.detectChanges();
         expect(component.gamesDoubleView).toEqual(games);
     })
+=======
+  it('should have a list of games', async() => {
+    setTimeout(() => {
+      //expect(component.games).not.toBeDefined();
+    }, 1000);
+  })
+
+  it('should have a list of games in single view', async() => {
+    setTimeout(() => {
+      //expect(component.gamesSingleView).toBeTruthy();
+    }, 1000);
+  })
+
+  it('should have a list of games in double view', async() => {
+    setTimeout(() => {
+      //expect(component.gamesDoubleView).toBeTruthy();
+    }, 1000);
+  })
+>>>>>>> dev
 });

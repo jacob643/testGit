@@ -21,7 +21,7 @@ export module UserController {
                 res.status(500);
                 throw new Error("Alphanumeric only, 4-10 characters");
             }
-            if(this.users.find((e)=>{return e.name == name})) {
+            if (this.users.find((e) => { return e.name == name })) {
                 res.status(500);
                 throw new Error("Name already taken.");
             }
@@ -33,6 +33,21 @@ export module UserController {
         public getUser(req: Request, res: Response, next: NextFunction): void {
             let name: string = req.param.name;
             res.send(JSON.stringify(this.users.find((e) => { return e.name == name })));
+        }
+
+        public deleteUser(req: Request, res: Response, next: NextFunction): void {
+            let name: string = req.body.name;
+            let index: number = -1;
+            for (let i = 0; i < this.users.length; i++) {
+                if (this.users[i].name == name) {
+                    index = i;
+                }
+            }
+            if (index == -1) {
+                throw new Error("Name doesn't exist");
+            }
+            let user = this.users.splice(index, 1)[0];
+            res.send(JSON.stringify(user));
         }
     }
 }

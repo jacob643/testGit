@@ -7,6 +7,7 @@ import * as cors from "cors";
 import Types from "./types";
 import { injectable, inject } from "inversify";
 import { Routes } from "./routes";
+import { ERROR, createNotification } from "../../common/communication/notification"
 //import DbClient = require("./routes/database")
 
 @injectable()
@@ -56,10 +57,7 @@ export class Application {
             // tslint:disable-next-line:no-any
             this.app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
                 res.status(err.status || this.internalError);
-                res.send({
-                    message: err.message,
-                    error: err
-                });
+                res.send(createNotification(err.message, ERROR));
             });
         }
 
@@ -68,10 +66,7 @@ export class Application {
         // tslint:disable-next-line:no-any
         this.app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
             res.status(err.status || this.internalError);
-            res.send({
-                message: err.message,
-                error: {}
-            });
+            res.send(createNotification(err.message, ERROR));
         });
     }
 

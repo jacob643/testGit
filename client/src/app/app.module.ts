@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, ErrorHandler } from "@angular/core";
 import { FormsModule } from "@angular/forms"
 
 import { AppComponent } from "./app.component";
@@ -11,6 +11,12 @@ import { InitialViewComponent } from './inital-view/initial-view.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
 import { AppRouterModule } from "./router/approuter.module";
 import { GameMenuComponent } from './game-menu/game-menu.component';
+import { NotificationComponent } from './notification/notification.component'
+
+import { UserService } from './services/user-service/user.service';
+import { NotificationService } from './services/notification/notification.service';
+import { GameService } from './services/game.service';
+import { ErrorsHandler } from './services/errorhandler/errorhandler.service';
 
 @NgModule({
     declarations: [
@@ -21,7 +27,8 @@ import { GameMenuComponent } from './game-menu/game-menu.component';
         GameDisplayComponent,
         InitialViewComponent,
         GameMenuComponent,
-        AdminViewComponent
+        AdminViewComponent,
+        NotificationComponent
     ],
     imports: [
         BrowserModule,
@@ -29,7 +36,16 @@ import { GameMenuComponent } from './game-menu/game-menu.component';
         AppRouterModule,
         FormsModule
     ],
-    providers: [BasicService],
+    providers: [
+        BasicService,
+        UserService,
+        GameService,
+        {
+            provide: ErrorHandler,
+            useClass: ErrorsHandler,
+        },
+        NotificationService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

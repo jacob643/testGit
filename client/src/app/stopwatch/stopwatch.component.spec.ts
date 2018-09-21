@@ -55,5 +55,13 @@ describe('StopwatchComponent', () => {
         assert(component.output == "00:01");
     });
 
-
+    it('should stop when stopped', () => {
+        component.start();
+        let waitTime = 1010;
+        wait(waitTime);
+        component.stop();
+        let old = component.output;
+        wait(waitTime);
+        assert(old == component.output);
+    });
 });
