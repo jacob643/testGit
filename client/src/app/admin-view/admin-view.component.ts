@@ -57,6 +57,12 @@ export class AdminViewComponent implements OnInit {
         return '';
     }
 
+    submitForm() {
+        if(this.isFulfill())
+        {
+            this.gameService.post(this.getInputValue('newGameName')).subscribe(() => {alert('works bitch');});
+        }
+    }
 
     isFulfill() {
         if(!this.checkInputs())alert('not all fields are filled');
