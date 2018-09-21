@@ -16,3 +16,11 @@ header{
     background: red;
     justify-content: center
 }
+
+.closed{
+    visibility: hidden;
+}
+
+dialog{
+    display:block;
+}
