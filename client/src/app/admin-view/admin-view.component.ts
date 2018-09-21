@@ -42,4 +42,14 @@ export class AdminViewComponent implements OnInit {
         this.resetInput('modifiedFile');
     }
 
+    checkInputs() {
+        return this.checkInput('newGameName')
+            && this.checkInput('originalFile')
+            && this.checkInput('modifiedFile');
+    }
+    checkInput(id:string) {
+        let idElement = <HTMLInputElement>document.getElementById(id);
+        if (idElement.value == '') return false;
+        return true;
+    }
 }
