@@ -97,15 +97,13 @@ export module Route {
                 } else {
                     console.log("Connected to our mongoDB!");
 
-                    let idNumber = <number>_req.params.id;
-                    console.log(idNumber);
+                    let idNumber = parseInt(_req.params.id);
                     let games = db.db("npmdb").collection("games");
-                    games.find({ id: idNumber }).toArray(function(_err: any, docs: any) {
-                        res.send(JSON.stringify(docs));
-                    });
+                    games.findOne({ id: idNumber }).then(
+                      docs => res.send(JSON.stringify(docs))
+                    );
                 }
             });
-
         }
     }
 }
