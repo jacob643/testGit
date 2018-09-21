@@ -24,4 +24,8 @@ export class GameService {
     public getGamesDoubleView(): Observable<Game[]>{
         return this.http.get<Game[]>("http://localhost:3000/games/doubleView");
     }
+
+    public getGameById(id: number): Observable<Game>{
+        return this.http.get<Game>("http://localhost:3000/game/" + id);
+    }
 }
