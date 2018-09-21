@@ -7,4 +7,7 @@ export class TestHelper {
     public static asyncData<T>(data: T): Observable<T> {
         return defer(() => Promise.resolve(data));
     }
+    public static asyncError<T>(data: T): Observable<T> {
+        return defer(() => Promise.reject(data));
+    }
 }
