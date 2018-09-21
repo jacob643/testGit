@@ -1,3 +1,21 @@
+<dialog id="form" class="closed">
+  <button (click)="openCloseForm()">X</button>
+
+  <form>
+    <br>
+    new Game's Name:
+    <input name ="newGameName" id="newGameName">
+    <br>
+    Original file:
+    <input name ="originalFile" type="file" id="originalFile" accept="image/BMP, image/png">
+    <br>
+    Modified file:
+    <input name ="modifiedFile" type="file" id="modifiedFile" accept="image/BMP, image/png">
+    <br>
+    <button (click)="submitForm()">submit</button><button (click)="openCloseForm()">cancel</button>
+  </form>
+</dialog>
+
 <div class="row top">
   Création d'un jeu
   <button>Point de vue simple</button>
