@@ -49,6 +49,14 @@ export class AdminViewComponent implements OnInit {
         }
     }
 
+    getInputValue(id:string) {
+        let idElement = <HTMLInputElement>document.getElementById(id);
+        if (idElement != null) {
+            return idElement.value;
+        }
+        return '';
+    }
+
 
     isFulfill() {
         if(!this.checkInputs())alert('not all fields are filled');
