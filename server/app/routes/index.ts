@@ -100,7 +100,7 @@ export module Route {
                     let idNumber = <number>_req.params.id;
                     console.log(idNumber);
                     let games = db.db("npmdb").collection("games");
-                    games.find({ }).toArray(function(_err: any, docs: any) {
+                    games.find({ id: idNumber }).toArray(function(_err: any, docs: any) {
                         res.send(JSON.stringify(docs));
                     });
                 }
