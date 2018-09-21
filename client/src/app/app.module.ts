@@ -13,7 +13,8 @@ import { GameMenuComponent } from './game-menu/game-menu.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 
 import { UserService } from './services/user-service/user.service'
-import { GameService } from './services/game.service'
+import { GameService } from './services/game.service';
+import { StartGameComponent } from './start-game/start-game.component'
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { GameService } from './services/game.service'
         GameDisplayComponent,
         InitialViewComponent,
         GameMenuComponent,
-        AdminViewComponent
+        AdminViewComponent,
+        StartGameComponent
     ],
     imports: [
         BrowserModule,
