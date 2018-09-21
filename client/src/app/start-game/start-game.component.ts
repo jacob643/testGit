@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Game } from './../../../../common/game/game';
 
 @Component({
     selector: 'app-start-game',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StartGameComponent implements OnInit {
 
     gameID: number;
+    game: Game;
 
     constructor( private route: ActivatedRoute ) { }
 

@@ -89,5 +89,23 @@ export module Route {
             });
 
         }
+        public getGameById(_req: Request, res: Response, _next: NextFunction): void {
+            var DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
+            MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err, db) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Connected to our mongoDB!");
+
+                    let idNumber = <number>_req.params.id;
+                    console.log(idNumber);
+                    let games = db.db("npmdb").collection("games");
+                    games.find({ }).toArray(function(_err: any, docs: any) {
+                        res.send(JSON.stringify(docs));
+                    });
+                }
+            });
+
+        }
     }
 }
