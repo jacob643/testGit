@@ -26,7 +26,7 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.index.getSingleViewGame(req, res, next));
         router.get("/games/doubleView",
             (req: Request, res: Response, next: NextFunction) => this.index.getDoubleViewGame(req, res, next));
-        router.get("/games/:id",
+        router.get("/game/:id",
               (req: Request, res: Response, next: NextFunction) => this.index.getGameById(req, res, next));
 
         router.get("/users",
