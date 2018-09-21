@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from './../../../../common/game/game';
+import { GameService } from '../services/game.service';
 
 @Component({
     selector: 'app-start-game',
@@ -9,14 +10,17 @@ import { Game } from './../../../../common/game/game';
 })
 export class StartGameComponent implements OnInit {
 
-    gameID: number;
     game: Game;
 
-    constructor( private route: ActivatedRoute ) { }
+    constructor( private route: ActivatedRoute, private gameService: GameService ) { }
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
-            this.gameID = params['gameID'];
+            this.getGameById( params['gameID'] );
         });
+    }
+
+    getGameById(id: number): void {
+        this.gameService.getGameById(id).subscribe(game => this.game = game)
     }
 }
