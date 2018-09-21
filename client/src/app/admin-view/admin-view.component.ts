@@ -28,4 +28,18 @@ export class AdminViewComponent implements OnInit {
         this.gameService.getGamesDoubleView().subscribe(games => this.gamesDoubleView = games)
     }
 
+    openCloseForm() {
+        let form = document.getElementById('form');
+        if (form != null) {
+            form.classList.toggle('closed');
+        }
+        this.cancelForm();
+    }
+
+    cancelForm() {
+        this.resetInput('newGameName');
+        this.resetInput('originalFile');
+        this.resetInput('modifiedFile');
+    }
+
 }
