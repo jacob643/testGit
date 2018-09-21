@@ -42,6 +42,14 @@ export class AdminViewComponent implements OnInit {
         this.resetInput('modifiedFile');
     }
 
+    resetInput(id:string) {
+        let idElement = <HTMLInputElement>document.getElementById(id);
+        if (idElement != null) {
+            idElement.value = '';
+        }
+    }
+
+
     checkInputs() {
         return this.checkInput('newGameName')
             && this.checkInput('originalFile')
