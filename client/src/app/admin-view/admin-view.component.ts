@@ -50,6 +50,11 @@ export class AdminViewComponent implements OnInit {
     }
 
 
+    isFulfill() {
+        if(!this.checkInputs())alert('not all fields are filled');
+        return this.checkInputs();
+    }
+
     checkInputs() {
         return this.checkInput('newGameName')
             && this.checkInput('originalFile')
