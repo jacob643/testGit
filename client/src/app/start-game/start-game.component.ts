@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from './../../../../common/game/game';
 
 @Component({
   selector: 'app-start-game',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./start-game.component.scss']
 })
 export class StartGameComponent implements OnInit {
+
+  game :Game;
 
   constructor() { }
 
