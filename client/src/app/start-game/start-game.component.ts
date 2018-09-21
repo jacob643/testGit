@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from './../../../../common/game/game';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-start-game',
-  templateUrl: './start-game.component.html',
-  styleUrls: ['./start-game.component.scss']
+    selector: 'app-start-game',
+    templateUrl: './start-game.component.html',
+    styleUrls: ['./start-game.component.scss']
 })
 export class StartGameComponent implements OnInit {
 
-  game :Game;
+    gameID: number;
 
-  constructor() { }
+    constructor( private route: ActivatedRoute ) { }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            this.gameID = params['gameID'];
+        });
+    }
 }
