@@ -4,6 +4,7 @@ import { TestHelper } from "../../../test.helper";
 import { } from "jasmine";
 
 let httpClientSpy: any;
+let errorHandler: any;
 let userService: UserService;
 
 describe('UserService', () => {
@@ -11,7 +12,8 @@ describe('UserService', () => {
 
     beforeEach(() => {
         httpClientSpy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
-        userService = new UserService(httpClientSpy);
+        errorHandler = jasmine.createSpyObj("ErrorsHandler", ["handleAsyncError"]);
+        userService = new UserService(httpClientSpy, errorHandler);
         user = { name: "Blah123" };
     });
 
