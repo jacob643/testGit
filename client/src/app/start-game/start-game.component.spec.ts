@@ -25,17 +25,7 @@ describe('StartGameComponent', () => {
         routeStub = { queryParams: { id: null} };
     });
 
-
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    //describe('getGameById', () => {
-    //  it('should call the gameservice method with provided parameters', () => {
-    //      let spy = jasmine.createSpyObj("this.gameService", ["getGameById"]);
-    //      let testID = 69;
-    //      component.getGameById(testID)
-    //      expect(spy).toHaveBeenCalledWith(testID);
-    //   });
-    //});
 });
