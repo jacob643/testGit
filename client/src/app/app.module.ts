@@ -9,7 +9,6 @@ import { GameDisplayComponent } from './game-display/game-display.component';
 import { InitialViewComponent } from './inital-view/initial-view.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
 import { AppRouterModule } from "./router/approuter.module";
-//import { Router } from '@angular/router'
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 
@@ -37,8 +36,7 @@ import { StartGameComponent } from './start-game/start-game.component'
     providers: [
         BasicService,
         UserService,
-        GameService//,
-        //Router
+        GameService
     ],
     bootstrap: [AppComponent]
 })
