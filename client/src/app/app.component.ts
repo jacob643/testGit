@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Message } from "../../../common/communication/message";
 import { BasicService } from "./services/basic.service";
 import { SocketService } from "./services/socket-service/socket.service";
+import { Event } from "../../../common/communication/event";
 
 @Component({
     selector: "app-root",
@@ -26,6 +27,8 @@ export class AppComponent implements OnInit {
         this.socketService.onEvent(Event.CONNECT).subscribe( () => {
             console.log('connected');
         });
+
+        this.ioConnection;
     }
 
     public ngOnInit(): void {

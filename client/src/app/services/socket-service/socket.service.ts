@@ -5,17 +5,17 @@ import { Event } from "../../../../../common/communication/event";
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:3000';
-
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
 
+    private readonly SERVER_URL: string = "http://localhost:3000/users";
+
     private socket: any;
 
     public initSocket(): void {
-        this.socket = socketIo(SERVER_URL);
+        this.socket = socketIo(this.SERVER_URL);
     }
 
     public onMessage(): Observable<Message> {
