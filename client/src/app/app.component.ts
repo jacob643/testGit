@@ -9,14 +9,27 @@ import { SocketService } from "./services/socket-service/socket.service";
     styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-    public constructor(private basicService: BasicService) { }
+    public constructor(private basicService: BasicService,
+        private socketService: SocketService) { }
 
+    private ioConnection: any;
     public readonly title: string = "LOG2990";
     public message: string;
 
+    private initIoConnection(): void {
+        this.socketService.initSocket();
 
+        this.ioConnection = this.socketService.onMessage().subscribe((message: Message) => {
+            this.message = message.title + message.body;
+        });
+
+        this.socketService.onEvent(Event.CONNECT).subscribe( () => {
+            console.log('connected');
+        });
+    }
 
     public ngOnInit(): void {
         this.basicService.basicGet().subscribe((message: Message) => this.message = message.title + message.body);
+        this.initIoConnection();
     }
 }

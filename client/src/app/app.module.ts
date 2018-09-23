@@ -14,6 +14,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 
 import { UserService } from './services/user-service/user.service'
 import { GameService } from './services/game.service'
+import { SocketService } from './services/socket-service/socket.service'
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { GameService } from './services/game.service'
     providers: [
         BasicService,
         UserService,
-        GameService
+        GameService,
+        SocketService
     ],
     bootstrap: [AppComponent]
 })
