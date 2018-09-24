@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
         });
 
         this.socketService.onEvent(Event.CONNECT).subscribe( () => {
-            console.log('connected');
+            //Console log for debugging purposes only
+            //console.log('connected');
         });
 
         this.ioConnection;
