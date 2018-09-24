@@ -25,8 +25,13 @@ export class Server {
         this.server.on("listening", () => this.onListening());
 
         this.io = socketIO(this.server);
-        this.io.on('connection', function(socket: any) {
-            console.log('User ' + socket.id + ' connected');
+        this.io.on('connect', (socket: any) => {
+            //Console log for debugging purposes only
+            //console.log('User ' + socket.id + ' connected');
+            socket.on('disconnect', () => {
+                //Console log for debugging purposes only
+                //console.log('User ' + socket.id + ' disconnected')
+            });
         });
     }
 
