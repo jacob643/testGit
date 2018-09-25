@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Message } from "../../../common/communication/message";
 import { BasicService } from "./services/basic.service";
 import { SocketService } from "./services/socket-service/socket.service";
-import { Event } from "../../../common/communication/event";
 
 @Component({
     selector: "app-root",
@@ -22,11 +21,6 @@ export class AppComponent implements OnInit {
 
         this.ioConnection = this.socketService.onMessage().subscribe((message: Message) => {
             this.message = message.title + message.body;
-        });
-
-        this.socketService.onEvent(Event.CONNECT).subscribe( () => {
-            //Console log for debugging purposes only
-            //console.log('connected');
         });
 
         this.ioConnection;

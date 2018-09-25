@@ -26,11 +26,9 @@ export class Server {
 
         this.io = socketIO(this.server);
         this.io.on('connect', (socket: any) => {
-            //Console log for debugging purposes only
-            //console.log('User ' + socket.id + ' connected');
+
             socket.on('disconnect', () => {
-                //Console log for debugging purposes only
-                //console.log('User ' + socket.id + ' disconnected')
+
             });
         });
     }
