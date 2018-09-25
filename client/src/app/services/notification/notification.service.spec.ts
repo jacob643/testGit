@@ -1,24 +1,39 @@
-import { TestBed, inject } from '@angular/core/testing';
-
 import { NotificationService } from './notification.service';
-import { createNotification } from '../../../../../common/communication/notification';
+import { Notification, createNotification, ERROR } from '../../../../../common/communication/notification';
 
 describe('NotificationService', () => {
+    let not: Notification;
+    let service: NotificationService;
+
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [NotificationService]
+        service = new NotificationService();
+        not = createNotification();
+    });
+
+    describe('initialize', () => {
+        it('notification should be null', () => {
+            expect(service.notification).toBeFalsy();
         });
     });
 
-    it('should be created', inject([NotificationService], (service: NotificationService) => {
-        expect(service).toBeTruthy();
-    }));
-
-    describe('clear', inject([NotificationService], (service: NotificationService) => {
-        it("should make the notification falsy", () => {
-            service.notification = createNotification();
+    describe('clear', () => {
+        it("should make the notification undefined", () => {
+            service.notification = not;
             service.clear();
             expect(service.notification).toBeFalsy();
         });
-    }));
+    });
+
+    describe("error", () => {
+        it("should create a notification", () => {
+            let n = createNotification();
+            service.error(n.text);
+            if (service.notification) {
+                expect(service.notification.text).toEqual(n.text);
+                expect(service.notification.status).toEqual(ERROR);
+            } else {
+                expect(false).toBeTruthy()
+            }
+        })
+    });
 });
