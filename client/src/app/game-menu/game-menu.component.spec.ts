@@ -27,6 +27,10 @@ describe('GameMenuComponent', () => {
     beforeEach(inject([GameService], (g: GameService) => {
         games = new Array<Game>();
         gameService = g
+        spyOn(gameService, "post").and.returnValue(of(games));
+        spyOn(gameService, "getGames").and.returnValue(of(games));
+        spyOn(gameService, "getGamesSingleView").and.returnValue(of(games));
+        spyOn(gameService, "getGamesDoubleView").and.returnValue(of(games));
         fixture = TestBed.createComponent(GameMenuComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -37,21 +41,18 @@ describe('GameMenuComponent', () => {
     });
 
     it('should have a list of games', async () => {
-        spyOn(gameService, 'getGames').and.returnValue(of(games));
         component.getGames();
         fixture.detectChanges();
         expect(component.games).toEqual(games);
     })
 
     it('should have a list of games in single view', async () => {
-        spyOn(gameService, 'getGamesSingleView').and.returnValue(of(games));
         component.getGamesSingleView();
         fixture.detectChanges();
         expect(component.gamesSingleView).toEqual(games);
     })
 
     it('should have a list of games in double view', async () => {
-        spyOn(gameService, 'getGamesDoubleView').and.returnValue(of(games));
         component.getGamesDoubleView();
         fixture.detectChanges();
         expect(component.gamesDoubleView).toEqual(games);
