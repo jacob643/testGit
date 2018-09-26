@@ -51,5 +51,16 @@ export module GameController {
                 })
             });
         }
+
+        public getGamesId(req: Request, res: Response, _next: NextFunction): void {
+            let value: number = Number(req.params.id);
+            this.connect((db: any) => {
+                let games = db.db(DB_NAME).collection(COLLECTION_NAME);
+                games.find({ id: value }).toArray(function(_err: Error, docs: any) {
+                    res.send(JSON.stringify(docs));
+                })
+            });
+
+        }
     }
 }

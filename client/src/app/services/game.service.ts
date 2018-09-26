@@ -37,4 +37,8 @@ export class GameService {
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
+
+    public getGameById(id: number): Observable<Game> {
+        return this.http.get<Game>(this.URL + "/id/" + id);
+    }
 }

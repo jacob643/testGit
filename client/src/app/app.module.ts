@@ -17,6 +17,7 @@ import { UserService } from './services/user-service/user.service';
 import { NotificationService } from './services/notification/notification.service';
 import { GameService } from './services/game.service';
 import { ErrorsHandler } from './services/errorhandler/errorhandler.service';
+import { StartGameComponent } from './start-game/start-game.component'
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { ErrorsHandler } from './services/errorhandler/errorhandler.service';
         InitialViewComponent,
         GameMenuComponent,
         AdminViewComponent,
-        NotificationComponent
+        NotificationComponent,
+        StartGameComponent
     ],
     imports: [
         BrowserModule,

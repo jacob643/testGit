@@ -25,6 +25,8 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.games.postGames(req, res, next));
         router.get("/games/:value",
             (req: Request, res: Response, next: NextFunction) => this.games.getGamesView(req, res, next));
+        router.get("/games/id/:id",
+            (req: Request, res: Response, next: NextFunction) => this.games.getGamesId(req, res, next));
         // User Controller
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));

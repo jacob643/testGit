@@ -8,36 +8,38 @@
     <img src="../../{{ game.imagePath }}/original.jpg">
   </div>
 
-  <div class="column">
-    Top 3
-    <table>
-      <tr>
-        <th>Solo</th>
-        <th>1v1</th>
-      </tr>
-      <tr>
-        <td>{{game.scoreSolo.first.name}} : {{game.scoreSolo.first.time}}</td>
-        <td>{{game.score1v1.first.name}} : {{game.score1v1.first.time}}</td>
-      </tr>
-      <tr>
-        <td>{{game.scoreSolo.second.name}} : {{game.scoreSolo.second.time}}</td>
-        <td>{{game.score1v1.second.name}} : {{game.score1v1.second.time}}</td>
-      </tr>
-      <tr>
-        <td>{{game.scoreSolo.third.name}} : {{game.scoreSolo.third.time}}</td>
-        <td>{{game.score1v1.third.name}} : {{game.score1v1.third.time}}</td>
-      </tr>
-      <tr *ngIf="admin; else elseBlock">
-        <td><button>Supprimer</button></td>
-        <td><button>Réinitialiser</button></td>
-      </tr>
-       <ng-template #elseBlock>
-         <td><button>Jouer</button></td>
-         <td><button>Créer</button></td>
-       </ng-template>
+    <div class="column">
+      Top 3
+      <table>
+        <tr>
+          <th>Solo</th>
+          <th>1v1</th>
+        </tr>
+        <tr>
+          <td>{{game.scoreSolo.first.name}} : {{game.scoreSolo.first.time}}</td>
+          <td>{{game.score1v1.first.name}} : {{game.score1v1.first.time}}</td>
+        </tr>
+        <tr>
+          <td>{{game.scoreSolo.second.name}} : {{game.scoreSolo.second.time}}</td>
+          <td>{{game.score1v1.second.name}} : {{game.score1v1.second.time}}</td>
+        </tr>
+        <tr>
+          <td>{{game.scoreSolo.third.name}} : {{game.scoreSolo.third.time}}</td>
+          <td>{{game.score1v1.third.name}} : {{game.score1v1.third.time}}</td>
+        </tr>
+        <tr *ngIf="admin; else elseBlock">
+          <td><button>Supprimer</button></td>
+          <td><button>Réinitialiser</button></td>
+          <td><button (click)="playGame()">Jouer</button></td>
+          <td><button>Créer</button></td>
+        </tr>
+        <ng-template #elseBlock>
+          <td><button>Jouer</button></td>
+          <td><button>Créer</button></td>
+        </ng-template>
 
-    </table>
+      </table>
+    </div>
+
+
   </div>
-
-
-</div>
