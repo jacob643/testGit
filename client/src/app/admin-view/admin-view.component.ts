@@ -13,6 +13,10 @@ export class AdminViewComponent implements OnInit {
     gamesSingleView: Game[];
     gamesDoubleView: Game[];
 
+    readonly newGameName = 'newGameName';
+    readonly originalFile = 'originalFile';
+    readonly modifiedFile = 'modifiedFile';
+
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
@@ -37,19 +41,19 @@ export class AdminViewComponent implements OnInit {
     }
 
     cancelForm() {
-        this.resetInput('newGameName');
-        this.resetInput('originalFile');
-        this.resetInput('modifiedFile');
+        this.resetInput(this.newGameName);
+        this.resetInput(this.originalFile);
+        this.resetInput(this.modifiedFile);
     }
 
-    resetInput(id:string) {
+    resetInput(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
         if (idElement != null) {
             idElement.value = '';
         }
     }
 
-    getInputValue(id:string) {
+    getInputValue(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
         if (idElement != null) {
             return idElement.value;
@@ -58,23 +62,22 @@ export class AdminViewComponent implements OnInit {
     }
 
     submitForm() {
-        if(this.isFulfill())
-        {
-            this.gameService.post(this.getInputValue('newGameName')).subscribe(() => {alert('works bitch');});
+        if (this.isFulfill()) {
+            this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => { alert('works bitch'); });
         }
     }
 
     isFulfill() {
-        if(!this.checkInputs())alert('not all fields are filled');
+        if (!this.checkInputs()) alert('not all fields are filled');
         return this.checkInputs();
     }
 
     checkInputs() {
-        return this.checkInput('newGameName')
-            && this.checkInput('originalFile')
-            && this.checkInput('modifiedFile');
+        return this.checkInput(this.newGameName)
+            && this.checkInput(this.originalFile)
+            && this.checkInput(this.modifiedFile);
     }
-    checkInput(id:string) {
+    checkInput(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
         if (idElement.value == '') return false;
         return true;

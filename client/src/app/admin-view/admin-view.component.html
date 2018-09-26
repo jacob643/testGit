@@ -4,13 +4,13 @@
   <form>
     <br>
     new Game's Name:
-    <input name ="newGameName" id="newGameName">
+    <input name ={{newGameName}} id={{newGameName}}>
     <br>
     Original file:
-    <input name ="originalFile" type="file" id="originalFile" accept="image/BMP">
+    <input name ={{originalFile}} type="file" id={{originalFile}} accept="image/BMP">
     <br>
     Modified file:
-    <input name ="modifiedFile" type="file" id="modifiedFile" accept="image/BMP">
+    <input name ={{modifiedFile}} type="file" id={{modifiedFile}} accept="image/BMP">
     <br>
     <button (click)="submitForm()">submit</button><button (click)="openCloseForm()">cancel</button>
   </form>
