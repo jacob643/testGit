@@ -10,28 +10,30 @@ import { ErrorsHandler } from './errorhandler/errorhandler.service'
 })
 export class GameService {
 
+    readonly URL = "http://localhost:3000/games";
+
     constructor(private http: HttpClient, private errorHandler: ErrorsHandler) { }
 
     public post(name: string): Observable<Game> {
-        return this.http.post<Game>("http://localhost:3000/games", { name }).pipe(
+        return this.http.post<Game>(this.URL, { name }).pipe(
             catchError(this.errorHandler.handleAsyncError<Game>())
         );
     }
 
     public getGames(): Observable<Game[]> {
-        return this.http.get<Game[]>("http://localhost:3000/games").pipe(
+        return this.http.get<Game[]>(this.URL).pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
 
     public getGamesSingleView(): Observable<Game[]> {
-        return this.http.get<Game[]>("http://localhost:3000/games/true").pipe(
+        return this.http.get<Game[]>(this.URL + "/" + "true").pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
 
     public getGamesDoubleView(): Observable<Game[]> {
-        return this.http.get<Game[]>("http://localhost:3000/games/false").pipe(
+        return this.http.get<Game[]>(this.URL + "/" + "false").pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
