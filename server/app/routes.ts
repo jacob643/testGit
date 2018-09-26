@@ -18,16 +18,16 @@ export class Routes {
 
         router.get("/",
             (req: Request, res: Response, next: NextFunction) => this.index.helloWorld(req, res, next));
-
+        // Game Controller
         router.get("/games",
-            (req: Request, res: Response, next: NextFunction) => this.games.showGames(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.games.getGames(req, res, next));
         router.post("/games",
             (req: Request, res: Response, next: NextFunction) => this.games.postGames(req, res, next));
         router.get("/games/singleView",
             (req: Request, res: Response, next: NextFunction) => this.games.getSingleViewGame(req, res, next));
         router.get("/games/doubleView",
             (req: Request, res: Response, next: NextFunction) => this.games.getDoubleViewGame(req, res, next));
-
+        // User Controller
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
         router.post("/users",

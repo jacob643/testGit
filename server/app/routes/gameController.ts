@@ -22,7 +22,7 @@ export module GameController {
             });
         }
 
-        public showGames(_req: Request, res: Response, _next: NextFunction): void {
+        public getGames(_req: Request, res: Response, _next: NextFunction): void {
             this.connect((db: any) => {
                 let games = db.db(DB_NAME).collection(COLLECTION_NAME);
                 games.find().toArray(function(_err: any, docs: any) {
