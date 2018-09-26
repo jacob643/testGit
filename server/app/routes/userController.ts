@@ -31,7 +31,7 @@ export module UserController {
         }
 
         public getUser(req: Request, res: Response, next: NextFunction): void {
-            let name: string = req.param.name;
+            let name: string = req.params.name;
             res.send(JSON.stringify(this.users.find((e) => { return e.name == name })));
         }
 

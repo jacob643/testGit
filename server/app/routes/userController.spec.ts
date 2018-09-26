@@ -92,7 +92,7 @@ describe("UserController", () => {
 
     describe("getUser", () => {
         beforeEach(() => {
-            req = mockReq({ param: { name: user.name } });
+            req = mockReq({ params: { name: user.name } });
             res = mockRes();
         })
 

@@ -41,19 +41,12 @@ export module GameController {
                 res.send(JSON.stringify(game));
             });
         }
-        public getSingleViewGame(_req: Request, res: Response, _next: NextFunction): void {
-            this.connect((db: any) => {
-                let games = db.db(DB_NAME).collection(COLLECTION_NAME);
-                games.find({ singleView: true }).toArray(function(_err: Error, docs: any) {
-                    res.send(JSON.stringify(docs));
-                })
-            });
 
-        }
-        public getDoubleViewGame(_req: Request, res: Response, _next: NextFunction): void {
+        public getGamesView(req: Request, res: Response, _next: NextFunction): void {
+            let value: boolean = req.params.value == "true";
             this.connect((db: any) => {
                 let games = db.db(DB_NAME).collection(COLLECTION_NAME);
-                games.find({ singleView: false }).toArray(function(_err: any, docs: any) {
+                games.find({ singleView: value }).toArray(function(_err: Error, docs: any) {
                     res.send(JSON.stringify(docs));
                 })
             });

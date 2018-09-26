@@ -23,17 +23,15 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.games.getGames(req, res, next));
         router.post("/games",
             (req: Request, res: Response, next: NextFunction) => this.games.postGames(req, res, next));
-        router.get("/games/singleView",
-            (req: Request, res: Response, next: NextFunction) => this.games.getSingleViewGame(req, res, next));
-        router.get("/games/doubleView",
-            (req: Request, res: Response, next: NextFunction) => this.games.getDoubleViewGame(req, res, next));
+        router.get("/games/:value",
+            (req: Request, res: Response, next: NextFunction) => this.games.getGamesView(req, res, next));
         // User Controller
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
         router.post("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));
         router.get("/users/:name",
-            (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.users.getUser(req, res, next));
         router.delete("users",
             (req: Request, res: Response, next: NextFunction) => this.users.deleteUser(req, res, next));
 

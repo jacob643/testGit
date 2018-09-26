@@ -25,13 +25,13 @@ export class GameService {
     }
 
     public getGamesSingleView(): Observable<Game[]> {
-        return this.http.get<Game[]>("http://localhost:3000/games/singleView").pipe(
+        return this.http.get<Game[]>("http://localhost:3000/games/true").pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
 
     public getGamesDoubleView(): Observable<Game[]> {
-        return this.http.get<Game[]>("http://localhost:3000/games/doubleView").pipe(
+        return this.http.get<Game[]>("http://localhost:3000/games/false").pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
     }
