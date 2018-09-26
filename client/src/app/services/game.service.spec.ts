@@ -22,7 +22,7 @@ describe('GameService', () => {
             service.post(games[0].name).subscribe(
                 (game: Game) => {
                     expect(game).toEqual(games[0], 'should received a game');
-                    expect(httpClientSpy).toHaveBeenCalledTimes(1);
+                    expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
                 }
             )
         });
@@ -34,9 +34,8 @@ describe('GameService', () => {
                 (game: Game) => {
                     expect(true).toBeFalsy();
                 }, (err: Error) => {
-                    expect(httpClientSpy).toHaveBeenCalledTimes(1);
-                    expect(errorHandler).toHaveBeenCalledTimes(1);
-                    expect(errorHandler).toHaveBeenCalledWith(error)
+                    expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
+                    expect(errorHandler.handleAsyncError).toHaveBeenCalledTimes(1);
                 }
             );
         })

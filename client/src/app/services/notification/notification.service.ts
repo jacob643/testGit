@@ -10,10 +10,10 @@ export class NotificationService {
     constructor() { }
 
     error(msg: string) {
-        this.notification = createNotification(msg, ERROR)
+        this.notification = createNotification(msg, ERROR);
     }
 
     clear() {
-        this.notification = undefined
+        this.notification = undefined;
     }
 }

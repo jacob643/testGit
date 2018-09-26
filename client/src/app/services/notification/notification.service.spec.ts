@@ -1,6 +1,7 @@
 import { NotificationService } from './notification.service';
 import { Notification, createNotification, ERROR } from '../../../../../common/communication/notification';
 
+
 describe('NotificationService', () => {
     let not: Notification;
     let service: NotificationService;
@@ -26,10 +27,9 @@ describe('NotificationService', () => {
 
     describe("error", () => {
         it("should create a notification", () => {
-            let n = createNotification();
-            service.error(n.text);
+            service.error(not.text);
             if (service.notification) {
-                expect(service.notification.text).toEqual(n.text);
+                expect(service.notification.text).toEqual(not.text);
                 expect(service.notification.status).toEqual(ERROR);
             } else {
                 expect(false).toBeTruthy()
