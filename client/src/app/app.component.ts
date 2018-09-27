@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Message } from "../../../common/communication/message";
-import { BasicService } from "./services/basic.service";
 import { SocketService } from "./services/socket-service/socket.service";
 import { UserService } from "./services/user-service/user.service";
 import { createUser } from "../../../common/user/user";
@@ -11,8 +9,7 @@ import { createUser } from "../../../common/user/user";
     styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-    public constructor(private basicService: BasicService,
-        private socketService: SocketService,
+    public constructor(private socketService: SocketService,
         private userService: UserService) { }
 
     public readonly title: string = "LOG2990";
@@ -26,7 +23,6 @@ export class AppComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.basicService.basicGet().subscribe((message: Message) => this.message = message.title + message.body);
         this.initIoConnection();
     }
 }

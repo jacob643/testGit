@@ -2,7 +2,6 @@
 // tslint:disable:no-floating-promises pour le before each
 import { TestBed, async } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
-import { BasicService } from "./services/basic.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRouterModule } from "./router/approuter.module";
 import { InitialViewComponent } from "./inital-view/initial-view.component"
@@ -10,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from "@angular/forms"
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { GameDisplayComponent } from './game-display/game-display.component';
+
 describe("AppComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -20,7 +20,7 @@ describe("AppComponent", () => {
                 GameDisplayComponent
             ],
             imports: [HttpClientModule, AppRouterModule, FormsModule],
-            providers: [BasicService, { provide: APP_BASE_HREF, useValue: '/' }]
+            providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
         }).compileComponents();
     }));
 });
