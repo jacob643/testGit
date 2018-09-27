@@ -82,10 +82,9 @@ export class AdminViewComponent implements OnInit {
     checkInput(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
         if (idElement.value == '') return false;
-        if (idElement.id == this.newGameName)
-        {
-          if(idElement.value.length < 4) return false;
-          if(idElement.value.length > 15) return false;
+        if (idElement.id == this.newGameName) {
+            if (idElement.value.length < 4) return false;
+            if (idElement.value.length > 15) return false;
         }
         return true;
     }
