@@ -15,7 +15,7 @@ export class Application {
     private readonly internalError: number = 500;
     public app: express.Application;
 
-    public constructor(@inject(Types.Routes) private api: Routes) {
+    public constructor(@inject(Types.Routes) public api: Routes) {
         this.app = express();
 
         this.config();

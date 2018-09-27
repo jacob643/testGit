@@ -36,18 +36,26 @@ export module UserController {
         }
 
         public deleteUser(req: Request, res: Response, next: NextFunction): void {
-            let name: string = req.body.name;
+            let user = delete (req.body.name);
+            if (user) {
+                res.send(JSON.stringify(user));
+            } else {
+                throw new Error("User does not exist")
+            }
+        }
+
+        public delete(id: string): User | undefined {
             let index: number = -1;
             for (let i = 0; i < this.users.length; i++) {
-                if (this.users[i].name == name) {
+                if (this.users[i].socketId == id) {
                     index = i;
                 }
             }
             if (index == -1) {
-                throw new Error("Name doesn't exist");
+                return undefined;
             }
             let user = this.users.splice(index, 1)[0];
-            res.send(JSON.stringify(user));
+            return user;
         }
     }
 }

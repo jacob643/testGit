@@ -28,7 +28,7 @@ export class Server {
         this.io.on('connect', (socket: any) => {
 
             socket.on('disconnect', () => {
-
+                this.application.api.users.delete(socket.id);
             });
         });
     }
