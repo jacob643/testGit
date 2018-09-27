@@ -33,4 +33,8 @@ describe('StartGameComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('should have a game', async () => {
+        expect(component.game).toEqual(game);
+    })
 });
