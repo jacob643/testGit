@@ -10,6 +10,8 @@ import { ErrorsHandler } from './errorhandler/errorhandler.service'
 })
 export class GameService {
 
+    selectedGameID: number;
+
     readonly URL = "http://localhost:3000/games";
 
     constructor(private http: HttpClient, private errorHandler: ErrorsHandler) { }
@@ -40,5 +42,9 @@ export class GameService {
 
     public getGameById(id: number): Observable<Game> {
         return this.http.get<Game>(this.URL + "/id/" + id);
+    }
+
+    public changeSelectedGameID(selectedGameID: number){
+      this.selectedGameID = selectedGameID;
     }
 }
