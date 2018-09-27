@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from "@angular/forms"
 import { GameDisplayComponent } from './game-display.component';
 import { Router } from '@angular/router'
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('GameDisplayComponent', () => {
   let component: GameDisplayComponent;
@@ -13,7 +14,7 @@ describe('GameDisplayComponent', () => {
       imports: [
           FormsModule
       ],
-      providers: [ {provide : Router, useClass : class {navigate = jasmine.createSpy("navigate");} }]
+      providers: [ {provide : Router, useClass : class {navigate = jasmine.createSpy("navigate");} }, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
