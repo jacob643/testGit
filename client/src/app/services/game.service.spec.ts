@@ -31,9 +31,9 @@ describe('GameService', () => {
             let error = new Error("blah")
             httpClientSpy.post.and.returnValue(TestHelper.asyncError(error));
             service.post(games[0].name).subscribe(
-                (game: Game) => {
+                (_game: Game) => {
                     expect(true).toBeFalsy();
-                }, (err: Error) => {
+                }, (_err: Error) => {
                     expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
                     expect(errorHandler.handleAsyncError).toHaveBeenCalledTimes(1);
                 }
