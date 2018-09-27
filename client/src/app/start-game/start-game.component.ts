@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game, createGame } from './../../../../common/game/game';
 import { GameService } from '../services/game.service';
-import { SelectedGameService } from '../services/selected-game.service'
 
 @Component({
     selector: 'app-start-game',
@@ -12,12 +11,11 @@ export class StartGameComponent implements OnInit {
 
     game: Game;
 
-    constructor(private gameService: GameService,
-        private selectedGame: SelectedGameService) {
+    constructor(private gameService: GameService) {
         this.game = createGame();
     }
 
     ngOnInit() {
-      this.gameService.getGameById(this.selectedGame.id).subscribe(game => this.game = game)
+      this.gameService.getGameById(this.gameService.selectedGameID).subscribe(game => this.game = game)
     }
 }
