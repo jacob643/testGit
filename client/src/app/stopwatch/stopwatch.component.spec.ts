@@ -27,13 +27,10 @@ describe('StopwatchComponent', () => {
         assert(component.output == "00:00");
     });
 
-    function wait(waitTime:number)
-    {
-        let startTime = new Date().getTime();
-        let now = new Date().getTime();
-        while (now < startTime + waitTime) {
-            now = new Date().getTime();
-        }
+    function wait(waitTime: number) {
+        component.startTime -= waitTime;
+        //like if we started 1.01 seconds ago.
+        // we have to know how the component works to do that.
     }
 
     it('should be greater than 0 after started', () => {
@@ -52,6 +49,7 @@ describe('StopwatchComponent', () => {
         let waitTime = 1010;
         wait(waitTime);
         component.stop();
+        //stop forces the update of the view.
         assert(component.output == "00:01");
     });
 
@@ -62,6 +60,7 @@ describe('StopwatchComponent', () => {
         component.stop();
         let old = component.output;
         wait(waitTime);
+        component.updateview();
         assert(old == component.output);
     });
 });
