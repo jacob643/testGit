@@ -1,4 +1,4 @@
-import { User } from "../../../../../common/user/user"
+import { User, createUser } from "../../../../../common/user/user"
 import { UserService } from './user.service';
 import { TestHelper } from "../../../test.helper";
 import { } from "jasmine";
@@ -12,7 +12,7 @@ describe('UserService', () => {
     beforeEach(() => {
         httpClientSpy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
         userService = new UserService(httpClientSpy);
-        user = { name: "Blah123" };
+        user = createUser("Blah123");
     });
 
     describe("GetUsers", () => {

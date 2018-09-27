@@ -12,6 +12,7 @@ import { User } from "../../../../../common/user/user";
 export class UserService {
 
     private readonly BASE_URL: string = "http://localhost:3000/users";
+    public user: User;
     public constructor(private http: HttpClient) { }
 
     public getUsers(): Observable<User[]> {
@@ -21,7 +22,7 @@ export class UserService {
     }
 
     public postUser(name: string): Observable<User> {
-        return this.http.post<User>(this.BASE_URL, {name}).pipe(
+        return this.http.post<User>(this.BASE_URL, { name }).pipe(
             catchError(this.handleError<User>("PostUser"))
         );
     }

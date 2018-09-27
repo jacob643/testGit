@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Message } from "../../../common/communication/message";
 import { BasicService } from "./services/basic.service";
 import { SocketService } from "./services/socket-service/socket.service";
+import { UserService } from "./services/user-service/user.service";
+import { createUser } from "../../../common/user/user";
 
 @Component({
     selector: "app-root",
@@ -10,13 +12,17 @@ import { SocketService } from "./services/socket-service/socket.service";
 })
 export class AppComponent implements OnInit {
     public constructor(private basicService: BasicService,
-        private socketService: SocketService) { }
+        private socketService: SocketService,
+        private userService: UserService) { }
 
     public readonly title: string = "LOG2990";
     public message: string;
 
     private initIoConnection(): void {
         this.socketService.initSocket();
+        this.socketService.clientSocket.on("connect", () => {
+            this.userService.user = createUser("", this.socketService.clientSocket.id)
+        });
     }
 
     public ngOnInit(): void {
