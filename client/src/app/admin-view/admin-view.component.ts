@@ -63,12 +63,14 @@ export class AdminViewComponent implements OnInit {
 
     submitForm() {
         if (this.isFulfill()) {
-            this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => { alert('works bitch'); });
+            this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => {
+              alert('the new game has been added to the list');
+            });
         }
     }
 
     isFulfill() {
-        if (!this.checkInputs()) alert('not all fields are filled');
+        if (!this.checkInputs()) alert('not all fields are filled\nthe length of name must be between 4 and 15 characters');
         return this.checkInputs();
     }
 
