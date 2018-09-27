@@ -12,14 +12,11 @@ export class AppComponent implements OnInit {
     public constructor(private basicService: BasicService,
         private socketService: SocketService) { }
 
-    public ioConnection: any;
     public readonly title: string = "LOG2990";
     public message: string;
 
     private initIoConnection(): void {
-        this.ioConnection = this.socketService.initSocket();
-
-        this.ioConnection;
+        this.socketService.initSocket();
     }
 
     public ngOnInit(): void {

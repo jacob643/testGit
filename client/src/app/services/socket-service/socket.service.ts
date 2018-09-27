@@ -6,10 +6,12 @@ import * as socketIo from 'socket.io-client';
 })
 export class SocketService {
 
+    public clientSocket: any;
+
     private readonly SERVER_URL: string = "http://localhost:3000/users";
 
     public initSocket(): any {
-        return socketIo(this.SERVER_URL);
+        this.clientSocket = socketIo(this.SERVER_URL);
     }
 
     constructor() { }
