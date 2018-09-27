@@ -4,6 +4,7 @@ import { UserService } from '../services/user-service/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from "@angular/forms"
+import { Router } from '@angular/router';
 import { } from "jasmine";
 
 import { User, createUser } from "../../../../common/user/user"
@@ -19,7 +20,10 @@ describe('InitialViewComponent', () => {
         TestBed.configureTestingModule({
             declarations: [InitialViewComponent],
             imports: [HttpClientModule, FormsModule],
-            providers: [UserService, { provide: APP_BASE_HREF, useValue: '/' }]
+            providers: [
+                { provide: Router, useClass: class { navigateByUrl = jasmine.createSpy("navigate"); } },
+                UserService,
+                { provide: APP_BASE_HREF, useValue: '/' }]
         })
             .compileComponents();
     }));

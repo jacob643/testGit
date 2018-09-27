@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../../common/user/user';
 import { UserService } from '../services/user-service/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +14,15 @@ export class InitialViewComponent implements OnInit {
 
     @Input() name: string;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private router: Router) { }
 
     postUser() {
         this.userService.postUser(this.name).subscribe((user: User) => {
-            this.userService.user = user;
+            if (user) {
+                this.userService.user = user;
+                this.router.navigateByUrl('gamelist')
+            }
+
         });
     }
 
