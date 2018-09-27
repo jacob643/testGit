@@ -1,4 +1,4 @@
-import { User } from "../../../../../common/user/user"
+import { User, createUser } from "../../../../../common/user/user"
 import { UserService } from './user.service';
 import { TestHelper } from "../../../test.helper";
 import { } from "jasmine";
@@ -14,7 +14,7 @@ describe('UserService', () => {
         httpClientSpy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
         errorHandler = jasmine.createSpyObj("ErrorsHandler", ["handleAsyncError"]);
         userService = new UserService(httpClientSpy, errorHandler);
-        user = { name: "Blah123" };
+        user = createUser("Blah123");
     });
 
     describe("GetUsers", () => {
@@ -35,14 +35,14 @@ describe('UserService', () => {
     describe("PostUser", () => {
         it("should post a user to the http only once", () => {
             httpClientSpy.post.and.returnValue(TestHelper.asyncData(user));
-
+            userService.user = createUser("", user.socketId)
             userService.postUser(user.name).subscribe(
                 (res: User) => {
                     expect(res).toEqual(user);
                 },
                 fail
             )
-            expect(httpClientSpy.post.calls.argsFor(0)).toContain({ name: user.name }, "body of the request is the user");
+            expect(httpClientSpy.post.calls.argsFor(0)).toContain({ name: user.name, id: userService.idPrefix + user.socketId }, "body of the request is the user");
             expect(httpClientSpy.post.calls.count()).toBe(1, "one call");
         });
     });

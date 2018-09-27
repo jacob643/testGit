@@ -41,7 +41,7 @@ describe('InitialViewComponent', () => {
         component.name = user.name
         component.postUser();
         fixture.detectChanges();
-        expect(component.user).toEqual(user);
+        expect(userService.user).toEqual(user);
         expect(userService.postUser).toHaveBeenCalledWith(component.name)
     })
 });

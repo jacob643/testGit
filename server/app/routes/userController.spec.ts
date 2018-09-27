@@ -42,49 +42,50 @@ describe("UserController", () => {
         });
     });
 
-    describe("postUsers", () => {
+    describe("updateUsers", () => {
         beforeEach(() => {
-            req = mockReq({ body: { name: user.name } });
+            req = mockReq({ body: { name: user.name, id: user.socketId } });
             res = mockRes();
+            controller.users.push(createUser("", user.socketId))
         })
 
-        it("should add a user to users property", () => {
-            controller.post(req, res, next);
+        it("should change user from users property", () => {
+            controller.updateUser(req, res, next);
             expect(controller.users).to.deep.include(user);
         });
 
         it("should send the user data back", () => {
-            controller.post(req, res, next);
+            controller.updateUser(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         })
 
         it("should not add name shorter than 4 chars", () => {
-            user = createUser("bbb");
-            req = mockReq({ body: { name: user.name } });
-            expect(() => controller.post(req, res, next)).to.throw();
-            expect(controller.users).to.be.an('array').that.is.empty;
+            user.name = "bbb";
+            req = mockReq({ body: { name: user.name, id: user.socketId } });
+            expect(() => controller.updateUser(req, res, next)).to.throw();
+            expect(controller.users).to.not.deep.include(user);
             expect(res.status).to.be.calledWith(500);
         });
 
         it("should not add name longer than 10 chars", () => {
             user = createUser("12345678901");
-            req = mockReq({ body: { name: user.name } });
-            expect(() => controller.post(req, res, next)).to.throw();
-            expect(controller.users).to.be.an('array').that.is.empty;
+            req = mockReq({ body: { name: user.name, id: user.socketId } });
+            expect(() => controller.updateUser(req, res, next)).to.throw();
+            expect(controller.users).to.not.deep.include(user);
             expect(res.status).to.be.calledWith(500);
         })
 
         it("should be impossible to have a name that isn't alphanumeric", () => {
             user = createUser("blah+");
             req = mockReq({ body: { name: user.name } })
-            expect(() => controller.post(req, res, next)).to.throw();
-            expect(controller.users).to.be.an('array').that.is.empty;
+            expect(() => controller.updateUser(req, res, next)).to.throw();
+            expect(controller.users).to.not.deep.include(user);
             expect(res.status).to.be.calledWith(500);
         })
 
         it("should be a unique name", () => {
             controller.users.push(user);
-            expect(() => controller.post(req, res, next)).to.throw();
+            expect(() => controller.updateUser(req, res, next)).to.throw();
             expect(res.status).to.be.calledWith(500);
         })
 
@@ -101,15 +102,15 @@ describe("UserController", () => {
             controller.getUser(req, res, next);
             expect(res.send).to.be.calledWith(JSON.stringify(user));
         });
-    });
 
+    });
     describe("deleteUser", () => {
         let user2: User;
 
         beforeEach(() => {
-            req = mockReq({ body: { name: user.name } });
+            req = mockReq({ body: { id: user.socketId } });
             res = mockRes();
-            user2 = createUser();
+            user2 = createUser("Blah1234", "djoijdwqd");
             controller.users.push(user);
             controller.users.push(user2);
         });
@@ -117,13 +118,13 @@ describe("UserController", () => {
         it("should delete only one user", () => {
             controller.deleteUser(req, res, next);
             expect(controller.users.length).to.equal(1);
-            expect(controller.users).not.to.contain(user);
+            expect(controller.users).not.to.include(user);
             expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         });
 
-        it("should throw if name doesn't exist", () => {
-            req = mockReq({ body: { name: "i dont exist" } });
-            expect(() => controller.deleteUser(req, res, next)).to.throw()
+        it("should throw if id doesn't exist", () => {
+            req = mockReq({ body: { name: "i dont exist", id: "me neither" } });
+            expect(() => controller.deleteUser(req, res, next)).to.throw();
         });
 
     });
