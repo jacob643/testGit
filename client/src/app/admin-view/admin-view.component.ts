@@ -16,7 +16,8 @@ export class AdminViewComponent implements OnInit {
     readonly newGameName = 'newGameName';
     readonly originalFile = 'originalFile';
     readonly modifiedFile = 'modifiedFile';
-
+    readonly minNameLength = 4;
+    readonly maxNameLength = 15;
     constructor(private gameService: GameService) { }
 
     ngOnInit() {
@@ -81,13 +82,16 @@ export class AdminViewComponent implements OnInit {
 
     checkName(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
-        if (idElement.value.length < 4
-            || idElement.value.length > 15)
+        if (idElement.value.length < this.minNameLength
+            || idElement.value.length > this.maxNameLength)
             throw (RangeError('the length of name must be between 4 and 15 characters'));
     }
 
     checkFile(id: string) {
-
         if (this.getInputValue(id) == '') throw (RangeError('not all file fields are filled'));
+
+        //read header, verify file type and size.
+
+
     }
 }
