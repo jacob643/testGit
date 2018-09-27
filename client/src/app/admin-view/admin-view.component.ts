@@ -75,9 +75,9 @@ export class AdminViewComponent implements OnInit {
     }
 
     checkInputs() {
-        return this.checkInput(this.newGameName)
-            && this.checkInput(this.originalFile)
-            && this.checkInput(this.modifiedFile);
+        this.checkName(this.newGameName);
+        this.checkFile(this.originalFile);
+        this.checkFile(this.modifiedFile);
     }
 
     checkName(id: string) {
