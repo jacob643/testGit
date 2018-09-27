@@ -37,4 +37,8 @@ describe('StartGameComponent', () => {
     it('should have a game', async () => {
         expect(component.game).toEqual(game);
     })
+
+    it('should should call getGameById only once', async () => {
+        expect(gameService.getGameById).toHaveBeenCalledTimes(1);
+    })
 });
