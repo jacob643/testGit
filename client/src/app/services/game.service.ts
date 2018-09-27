@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpRequest } from "@angular/common/http";
 import { Game } from './../../../../common/game/game';
 import { Observable } from "rxjs";
 import { catchError } from 'rxjs/operators';
@@ -38,6 +38,15 @@ export class GameService {
         return this.http.get<Game[]>(this.URL + "/" + "false").pipe(
             catchError(this.errorHandler.handleAsyncError<Game[]>())
         );
+    }
+
+    public uploadFile(file: File) {
+        let formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+
+        let req = new HttpRequest('post', this.URL, formData, {});
+
+        this.http.request(req).subscribe();
     }
 
     public getGameById(id: number): Observable<Game> {

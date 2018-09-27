@@ -62,12 +62,25 @@ export class AdminViewComponent implements OnInit {
         return '';
     }
 
+    getInputFile(id: string) {
+        let idElement = <HTMLInputElement>document.getElementById(id);
+        if (idElement != null) {
+            if(idElement.files != null) {
+                return idElement.files[0];
+            }
+            throw Error();
+        }
+        throw Error();
+    }
+
     submitForm() {
         try {
             this.checkInputs();
             this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => {
                 alert('the new game has been added to the list');
             });
+            this.gameService.uploadFile(this.getInputFile(this.originalFile));
+            this.gameService.uploadFile(this.getInputFile(this.modifiedFile));
         }
         catch (e) {
             alert(e.message);
