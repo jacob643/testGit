@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private initIoConnection(): void {
         this.socketService.initSocket();
         this.socketService.clientSocket.on("connect", () => {
-            this.userService.user = createUser("", this.socketService.clientSocket.id)
+            this.userService.user = createUser("", this.socketService.clientSocket.id);
         });
     }
 

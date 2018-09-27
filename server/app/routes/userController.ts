@@ -15,8 +15,10 @@ export module UserController {
             res.send(JSON.stringify(this.users));
         }
 
-        public post(req: Request, res: Response, next: NextFunction): void {
+        public updateUser(req: Request, res: Response, next: NextFunction): void {
             let name = req.body.name;
+            let id = "/#" + req.body.id;
+            console.log(name + id);
             if (!REGEXP_USERNAME.test(name)) {
                 res.status(500);
                 throw new Error("Alphanumeric only, 4-10 characters");
@@ -25,9 +27,15 @@ export module UserController {
                 res.status(500);
                 throw new Error("Name already taken.");
             }
-            let newUser = createUser(name);
+            let index = this.users.findIndex((e) => {return (e.socketId == id)});
+            this.users[index].name = name;
+            res.send(JSON.stringify(this.users[index]));
+        }
+
+        public addUser(id: string): User {
+            let newUser = createUser("", id);
             this.users.push(newUser);
-            res.send(JSON.stringify(newUser));
+            return newUser;
         }
 
         public getUser(req: Request, res: Response, next: NextFunction): void {

@@ -22,7 +22,8 @@ export class UserService {
     }
 
     public postUser(name: string): Observable<User> {
-        return this.http.post<User>(this.BASE_URL, { name }).pipe(
+        console.log(this.user)
+        return this.http.post<User>(this.BASE_URL, { name: name, id: this.user.socketId }).pipe(
             catchError(this.handleError<User>("PostUser"))
         );
     }

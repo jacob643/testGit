@@ -42,26 +42,26 @@ describe("UserController", () => {
         });
     });
 
-    describe("postUsers", () => {
+    describe("updateUsers", () => {
         beforeEach(() => {
             req = mockReq({ body: { name: user.name } });
             res = mockRes();
         })
 
         it("should add a user to users property", () => {
-            controller.post(req, res, next);
+            controller.updateUser(req, res, next);
             expect(controller.users).to.deep.include(user);
         });
 
         it("should send the user data back", () => {
-            controller.post(req, res, next);
+            controller.updateUser(req, res, next);
             expect(res.send).to.have.been.calledWith(JSON.stringify(user));
         })
 
         it("should not add name shorter than 4 chars", () => {
             user = createUser("bbb");
             req = mockReq({ body: { name: user.name } });
-            expect(() => controller.post(req, res, next)).to.throw();
+            expect(() => controller.updateUser(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         });
@@ -69,7 +69,7 @@ describe("UserController", () => {
         it("should not add name longer than 10 chars", () => {
             user = createUser("12345678901");
             req = mockReq({ body: { name: user.name } });
-            expect(() => controller.post(req, res, next)).to.throw();
+            expect(() => controller.updateUser(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })
@@ -77,14 +77,14 @@ describe("UserController", () => {
         it("should be impossible to have a name that isn't alphanumeric", () => {
             user = createUser("blah+");
             req = mockReq({ body: { name: user.name } })
-            expect(() => controller.post(req, res, next)).to.throw();
+            expect(() => controller.updateUser(req, res, next)).to.throw();
             expect(controller.users).to.be.an('array').that.is.empty;
             expect(res.status).to.be.calledWith(500);
         })
 
         it("should be a unique name", () => {
             controller.users.push(user);
-            expect(() => controller.post(req, res, next)).to.throw();
+            expect(() => controller.updateUser(req, res, next)).to.throw();
             expect(res.status).to.be.calledWith(500);
         })
 

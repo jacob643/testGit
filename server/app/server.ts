@@ -26,6 +26,7 @@ export class Server {
 
         this.io = socketIO(this.server);
         this.io.on('connect', (socket: any) => {
+            this.application.api.users.addUser(socket.id);
 
             socket.on('disconnect', () => {
                 this.application.api.users.delete(socket.id);

@@ -30,7 +30,7 @@ export class Routes {
         router.get("/users",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
         router.post("/users",
-            (req: Request, res: Response, next: NextFunction) => this.users.post(req, res, next));
+            (req: Request, res: Response, next: NextFunction) => this.users.updateUser(req, res, next));
         router.get("/users/:name",
             (req: Request, res: Response, next: NextFunction) => this.users.getUsers(req, res, next));
         router.delete("users",
