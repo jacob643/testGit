@@ -97,4 +97,28 @@ describe('AdminViewComponent', () => {
             }).not.toThrow();
         });
     });
+
+    describe('submitForm', () => {
+
+        it('should show the message error when error thrown', () => {
+            component.checkInputs = jasmine.createSpy('checkInputs').and.throwError('error message');
+            window.alert = jasmine.createSpy('alert');
+            expect(() => {
+                component.submitForm();
+            }).not.toThrow();
+            expect(window.alert).toHaveBeenCalledWith('error message');
+        });
+
+        it('should a positive message when successful', () => {
+            component.checkInputs = jasmine.createSpy('checkInputs');
+            window.alert = jasmine.createSpy('alert');
+
+            expect(() => {
+                component.submitForm();
+            }).not.toThrow();
+            expect(window.alert).toHaveBeenCalledWith('the new game has been added to the list');
+        });
+    });
+
+
 });
