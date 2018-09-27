@@ -79,4 +79,22 @@ describe('AdminViewComponent', () => {
             }).toThrow();
         });
     });
+
+    describe('checkInputs', () => {
+        it('should throw error if one of the subfunction trew one', () => {
+            component.checkFile = jasmine.createSpy('checkFile');
+            component.checkName = jasmine.createSpy('checkName').and.throwError('error message');
+            expect(() => {
+                component.checkInputs();
+            }).toThrow();
+        });
+
+        it('should not throw error if all good', () => {
+            component.checkFile = jasmine.createSpy('checkFile');
+            component.checkName = jasmine.createSpy('checkName');
+            expect(() => {
+                component.checkInputs();
+            }).not.toThrow();
+        });
+    });
 });
