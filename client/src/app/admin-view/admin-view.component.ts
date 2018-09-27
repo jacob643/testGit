@@ -79,13 +79,16 @@ export class AdminViewComponent implements OnInit {
             && this.checkInput(this.originalFile)
             && this.checkInput(this.modifiedFile);
     }
-    checkInput(id: string) {
+
+    checkName(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
-        if (idElement.value == '') return false;
-        if (idElement.id == this.newGameName) {
-            if (idElement.value.length < 4) return false;
-            if (idElement.value.length > 15) return false;
-        }
-        return true;
+        if (idElement.value.length < 4
+            || idElement.value.length > 15)
+            throw (RangeError('the length of name must be between 4 and 15 characters'));
+    }
+
+    checkFile(id: string) {
+
+        if (this.getInputValue(id) == '') throw (RangeError('not all file fields are filled'));
     }
 }
