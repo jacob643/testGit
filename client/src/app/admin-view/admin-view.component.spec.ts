@@ -70,4 +70,13 @@ describe('AdminViewComponent', () => {
         });
     });
 
+    describe('checkFile', () => {
+        it('should throw error if empty', () => {
+            dummyInput.value = "";
+            document.getElementById = jasmine.createSpy('getElementById').and.returnValue(dummyInput);
+            expect(() => {
+                component.checkName('dummy')
+            }).toThrow();
+        });
+    });
 });
