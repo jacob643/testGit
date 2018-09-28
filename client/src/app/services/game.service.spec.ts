@@ -76,5 +76,18 @@ describe('GameService', () => {
                 }
             )
         });
+
+        it('should have received an empty observable of game on fail', () => {
+            let error = new Error("test error")
+            httpClientSpy.get.and.returnValue(TestHelper.asyncError(error));
+            service.getGamesSingleView().subscribe(
+                (_game: Game[]) => {
+                    expect(true).toBeFalsy();
+                }, (_err: Error) => {
+                    expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
+                    expect(errorHandler.handleAsyncError).toHaveBeenCalledTimes(1);
+                }
+            );
+        })
     });
 });
