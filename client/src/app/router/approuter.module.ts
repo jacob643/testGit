@@ -9,9 +9,9 @@ import { StartGameComponent } from '../start-game/start-game.component'
 export const routes: Routes = [
     { path: '', redirectTo: 'initial', pathMatch: 'full' },
     { path: 'initial', component: InitialViewComponent },
-    { path: 'gamelist', component: GameMenuComponent},
-    { path: 'admin', component: AdminViewComponent},
-    { path: 'game', component: StartGameComponent}
+    { path: 'gamelist', component: GameMenuComponent },
+    { path: 'admin', component: AdminViewComponent },
+    { path: 'game', component: StartGameComponent }
 ];
 
 @NgModule({

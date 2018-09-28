@@ -65,7 +65,7 @@ export class AdminViewComponent implements OnInit {
     getInputFile(id: string) {
         let idElement = <HTMLInputElement>document.getElementById(id);
         if (idElement != null) {
-            if(idElement.files != null) {
+            if (idElement.files != null) {
                 return idElement.files[0];
             }
             throw Error();
@@ -85,11 +85,11 @@ export class AdminViewComponent implements OnInit {
             //formData.append("name",this.getInputValue(this.newGameName));
             //formData.append("original",this.getInputFile(this.originalFile));
             //formData.append("modified",this.getInputFile(this.modifiedFile));
-            this.gameService.post(this.getInputValue(this.newGameName),this.getInputFile(this.originalFile))
-            .subscribe(game => {
-                this.gamesSingleView.push(game);
-                alert('the new game has been added to the list');
-            });
+            this.gameService.post(this.getInputValue(this.newGameName), this.getInputFile(this.originalFile))
+                .subscribe(game => {
+                    this.gamesSingleView.push(game);
+                    alert('the new game has been added to the list');
+                });
             //this.gameService.uploadEverything(formData).subscribe();
         }
         catch (e) {
@@ -114,8 +114,8 @@ export class AdminViewComponent implements OnInit {
         if (this.getInputValue(id) == '') throw (RangeError('not all file fields are filled'));
         //read header, verify file type and size.
         let blob = this.getInputFile(id);
-        let sizeofWantedFile = 480*640*3 + 53;
-        if(blob.size != sizeofWantedFile ) throw (Error('the image has not the good size'));
+        let sizeofWantedFile = 480 * 640 * 3 + 53;
+        if (blob.size != sizeofWantedFile) throw (Error('the image has not the good size'));
         //	bitmap	(BMP) 24-bit et	avoir	une
         //  taille	de	640	x	480	pixels.
         //  let wow = JSON.stringify(blob);

@@ -16,9 +16,9 @@ export class GameService {
 
     constructor(private http: HttpClient, private errorHandler: ErrorsHandler) { }
 
-    public post(name: string, blob:Blob): Observable<Game> {
-        let index = this.listPicture.push(blob)-1;
-        return this.http.post<Game>(this.URL, { name:name, index:index }).pipe(
+    public post(name: string, blob: Blob): Observable<Game> {
+        let index = this.listPicture.push(blob) - 1;
+        return this.http.post<Game>(this.URL, { name: name, index: index }).pipe(
             catchError(this.errorHandler.handleAsyncError<Game>())
         );
     }
@@ -56,7 +56,7 @@ export class GameService {
         );
     }
 
-    public changeSelectedGameID(selectedGameID: number){
-      this.selectedGameID = selectedGameID;
+    public changeSelectedGameID(selectedGameID: number) {
+        this.selectedGameID = selectedGameID;
     }
 }

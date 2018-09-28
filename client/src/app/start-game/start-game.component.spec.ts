@@ -12,7 +12,7 @@ describe('StartGameComponent', () => {
     let game: Game;
     let gameService: GameService;
 
-    beforeEach( async(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [StartGameComponent],
             providers: [GameService],
@@ -21,7 +21,7 @@ describe('StartGameComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(inject([GameService], (g: GameService)=> {
+    beforeEach(inject([GameService], (g: GameService) => {
         game = createGame();
         gameService = g;
         spyOn(gameService, "getGameById").and.returnValue(of(game));
