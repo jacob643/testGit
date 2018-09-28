@@ -88,6 +88,15 @@ describe('AdminViewComponent', () => {
                 component.checkFile('dummy');
             }).toThrow();
         });
+
+        it('should not throw if all good', () => {
+            component.getInputFile = jasmine.createSpy('getInputFile').and.returnValue({size : 640*480*3 + 53});
+            dummyInput.value = "fake/path/blah.bmp";
+            document.getElementById = jasmine.createSpy('getElementById').and.returnValue(dummyInput);
+            expect(() => {
+                component.checkFile('dummy');
+            }).not.toThrow();
+        });
     });
 
     describe('checkInputs', () => {
