@@ -75,7 +75,17 @@ describe('AdminViewComponent', () => {
             dummyInput.value = "";
             document.getElementById = jasmine.createSpy('getElementById').and.returnValue(dummyInput);
             expect(() => {
-                component.checkName('dummy')
+                component.checkFile('dummy')
+            }).toThrow();
+        });
+
+        it('should throw error if the image is not the good bit size', () => {
+            component.getInputFile = jasmine.createSpy('getInputFile').and.returnValue({size : 1920*1080*3 + 53});
+            dummyInput.value = "fake/path/blah.bmp";
+            document.getElementById = jasmine.createSpy('getElementById').and.returnValue(dummyInput);
+
+            expect(() => {
+                component.checkFile('dummy');
             }).toThrow();
         });
     });
