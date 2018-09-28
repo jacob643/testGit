@@ -76,11 +76,11 @@ export class AdminViewComponent implements OnInit {
     submitForm() {
         try {
             this.checkInputs();
-            /*this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => {
+            this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => {
                 alert('the new game has been added to the list');
             });
             this.gameService.uploadFile(this.getInputFile(this.originalFile));
-            this.gameService.uploadFile(this.getInputFile(this.modifiedFile));*/
+            this.gameService.uploadFile(this.getInputFile(this.modifiedFile));* /
             //let formData = new FormData;
             //formData.append("name",this.getInputValue(this.newGameName));
             //formData.append("original",this.getInputFile(this.originalFile));
@@ -114,7 +114,7 @@ export class AdminViewComponent implements OnInit {
         if (this.getInputValue(id) == '') throw (RangeError('not all file fields are filled'));
         //read header, verify file type and size.
         let blob = this.getInputFile(id);
-        let sizeofWantedFile = 480 * 640 * 3 + 53;
+        let sizeofWantedFile = 480 * 640 * 3 + 54;
         if (blob.size != sizeofWantedFile) throw (Error('the image has not the good size'));
         //	bitmap	(BMP) 24-bit et	avoir	une
         //  taille	de	640	x	480	pixels.
