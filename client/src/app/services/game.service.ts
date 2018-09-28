@@ -51,7 +51,9 @@ export class GameService {
     }
 
     public getGameById(id: number): Observable<Game> {
-        return this.http.get<Game>(this.URL + "/id/" + id);
+        return this.http.get<Game>(this.URL + "/id/" + id).pipe(
+            catchError(this.errorHandler.handleAsyncError<Game>())
+        );
     }
 
     public changeSelectedGameID(selectedGameID: number){
