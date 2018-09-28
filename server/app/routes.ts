@@ -11,7 +11,7 @@ export class Routes {
 
     public constructor(
         @inject(Types.Index) private index: Route.Index,
-        @inject(Types.Users) private users: UserController.Users,
+        @inject(Types.Users) public users: UserController.Users,
         @inject(Types.Games) private games: GameController.Games) { }
     public get routes(): Router {
         const router: Router = Router();
@@ -36,7 +36,8 @@ export class Routes {
             (req: Request, res: Response, next: NextFunction) => this.users.getUser(req, res, next));
         router.delete("users",
             (req: Request, res: Response, next: NextFunction) => this.users.deleteUser(req, res, next));
-
+        router.post("/picture",
+            (req: Request, res: Response, next: NextFunction) => this.games.postPicture(req, res, next));
         return router;
     }
 }

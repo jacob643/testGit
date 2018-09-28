@@ -19,7 +19,7 @@ describe('GameService', () => {
     describe("post", () => {
         it('should return a observable of game when fine', () => {
             httpClientSpy.post.and.returnValue(TestHelper.asyncData(games[0]));
-            service.post(games[0].name).subscribe(
+            service.post(games[0].name,new Blob(["hey"])).subscribe(
                 (game: Game) => {
                     expect(game).toEqual(games[0], 'should received a game');
                     expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
@@ -30,7 +30,7 @@ describe('GameService', () => {
         it('should received an empty observable of game on fail', () => {
             let error = new Error("blah")
             httpClientSpy.post.and.returnValue(TestHelper.asyncError(error));
-            service.post(games[0].name).subscribe(
+            service.post(games[0].name,new Blob(["hey"])).subscribe(
                 (_game: Game) => {
                     expect(true).toBeFalsy();
                 }, (_err: Error) => {

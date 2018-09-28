@@ -127,16 +127,6 @@ describe('AdminViewComponent', () => {
             }).not.toThrow();
             expect(window.alert).toHaveBeenCalledWith('error message');
         });
-
-        it('should a positive message when successful', () => {
-            component.checkInputs = jasmine.createSpy('checkInputs');
-            window.alert = jasmine.createSpy('alert');
-
-            expect(() => {
-                component.submitForm();
-            }).not.toThrow();
-            expect(window.alert).toHaveBeenCalledWith('the new game has been added to the list');
-        });
     });
 
 

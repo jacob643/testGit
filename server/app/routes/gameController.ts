@@ -10,9 +10,23 @@ export module GameController {
     const DB_URL: string = "mongodb://admin:npm2018*@ds157742.mlab.com:57742/npmdb";
     const COLLECTION_NAME = "games"
     const DB_NAME = "npmdb"
+    let pictures = new Array<Blob>();
 
     @injectable()
     export class Games {
+      public postPicture(req: Request, res: Response, _next: NextFunction): void {
+          this.connect((db: any) => {
+              console.log(req.body.form);
+              let index = pictures.push(req.body.form.get('original'))-1;
+              pictures.push(req.body.form.get('modified'));
+              let scoreBoard: ScoreBoard = createScoreBoard();
+              let game: Game = createGame(1, req.body.form.get('name'), scoreBoard, scoreBoard, "", true, index);
+              //db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
+                //  if (error) throw error;
+              //})
+              res.send(JSON.stringify(game));
+          });
+      }
         private connect(func: Function): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
@@ -34,7 +48,7 @@ export module GameController {
         public postGames(req: Request, res: Response, _next: NextFunction): void {
             this.connect((db: any) => {
                 let scoreBoard: ScoreBoard = createScoreBoard();
-                let game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true);
+                let game: Game = createGame(1, req.body.name, scoreBoard, scoreBoard, "", true, req.body.index);
                 db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
                     if (error) throw error;
                 })
