@@ -90,4 +90,16 @@ describe('GameService', () => {
             );
         })
     });
+
+    describe("getGamesDoubleView", () => {
+        it('should return a observable of game when fine', () => {
+            httpClientSpy.get.and.returnValue(TestHelper.asyncData(games));
+            service.getGamesDoubleView().subscribe(
+                (game: Game[]) => {
+                    expect(game).toEqual(games, 'should have a game');
+                    expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
+                }
+            )
+        });
+    });
 });
