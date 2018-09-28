@@ -102,9 +102,12 @@ export class AdminViewComponent implements OnInit {
 
     checkFile(id: string) {
         if (this.getInputValue(id) == '') throw (RangeError('not all file fields are filled'));
-
         //read header, verify file type and size.
-
-
+        let blob = this.getInputFile(id);
+        let sizeofWantedFile = 480*640*3 + 53;
+        if(blob.size != sizeofWantedFile ) throw (Error('the image has not the good size'));
+        //	bitmap	(BMP) 24-bit et	avoir	une
+        //  taille	de	640	x	480	pixels.
+        //  let wow = JSON.stringify(blob);
     }
 }
