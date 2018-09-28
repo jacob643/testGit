@@ -14,19 +14,18 @@ export module GameController {
 
     @injectable()
     export class Games {
-      public postPicture(req: Request, res: Response, _next: NextFunction): void {
-          this.connect((db: any) => {
-              console.log(req.body.form);
-              let index = pictures.push(req.body.form.get('original'))-1;
-              pictures.push(req.body.form.get('modified'));
-              let scoreBoard: ScoreBoard = createScoreBoard();
-              let game: Game = createGame(1, req.body.form.get('name'), scoreBoard, scoreBoard, "", true, index);
-              //db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
+        public postPicture(req: Request, res: Response, _next: NextFunction): void {
+            this.connect((db: any) => {
+                let index = pictures.push(req.body.form.get('original')) - 1;
+                pictures.push(req.body.form.get('modified'));
+                let scoreBoard: ScoreBoard = createScoreBoard();
+                let game: Game = createGame(1, req.body.form.get('name'), scoreBoard, scoreBoard, "", true, index);
+                //db.db(DB_NAME).collection(COLLECTION_NAME).insertOne(game, function(error: Error, _res: any) {
                 //  if (error) throw error;
-              //})
-              res.send(JSON.stringify(game));
-          });
-      }
+                //})
+                res.send(JSON.stringify(game));
+            });
+        }
         private connect(func: Function): void {
             MongoClient.connect(DB_URL, { useNewUrlParser: true }, (err: Error, db: any) => {
                 if (err) {
