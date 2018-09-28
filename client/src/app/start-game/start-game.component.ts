@@ -16,6 +16,6 @@ export class StartGameComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.gameService.getGameById(this.gameService.selectedGameID).subscribe(game => this.game = game)
+      this.gameService.getGameById(this.gameService.selectedGameID).subscribe(game => this.game = game);
     }
 }
