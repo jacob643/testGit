@@ -76,11 +76,6 @@ export class AdminViewComponent implements OnInit {
     submitForm() {
         try {
             this.checkInputs();
-            this.gameService.post(this.getInputValue(this.newGameName)).subscribe(() => {
-                alert('the new game has been added to the list');
-            });
-            this.gameService.uploadFile(this.getInputFile(this.originalFile));
-            this.gameService.uploadFile(this.getInputFile(this.modifiedFile));* /
             //let formData = new FormData;
             //formData.append("name",this.getInputValue(this.newGameName));
             //formData.append("original",this.getInputFile(this.originalFile));
